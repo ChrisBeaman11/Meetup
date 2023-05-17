@@ -19,14 +19,14 @@ module.exports = {
         allowNull: false,
         unique: true
       },
-      // firstName: {
-      //   type: Sequelize.STRING(25),
-      //   allowNull: true,
-      // },
-      // lastName: {
-      //   type: Sequelize.STRING(25),
-      //   allowNull: true,
-      // },
+      firstName: {
+        type: Sequelize.STRING(25),
+        allowNull: false,
+      },
+      lastName: {
+        type: Sequelize.STRING(25),
+        allowNull: false,
+      },
       email: {
         type: Sequelize.STRING(256),
         allowNull: false,
