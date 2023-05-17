@@ -25,16 +25,16 @@ module.exports = (sequelize, DataTypes) => {
       firstName:{
         type: DataTypes.STRING,
         // allowNull: false,
-        validate: {
-          len: [3, 25]
-        }
+        // validate: {
+        //   len: [3, 25]
+        // }
       },
       lastName: {
         type: DataTypes.STRING,
         // allowNull: false,
-        validate: {
-          len: [3, 25]
-        }
+        // validate: {
+        //   len: [3, 25]
+        // }
       },
       email: {
         type: DataTypes.STRING,
