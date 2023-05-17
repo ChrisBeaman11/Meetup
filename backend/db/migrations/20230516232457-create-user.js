@@ -21,11 +21,11 @@ module.exports = {
       },
       firstName: {
         type: Sequelize.STRING(25),
-        // allowNull: false,
+        allowNull: true,
       },
       lastName: {
         type: Sequelize.STRING(25),
-        // allowNull: false,
+        allowNull: true,
       },
       email: {
         type: Sequelize.STRING(256),
