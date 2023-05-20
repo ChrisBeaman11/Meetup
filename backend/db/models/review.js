@@ -13,6 +13,14 @@ module.exports = (sequelize, DataTypes) => {
       Review.hasMany(
         models.ReviewImage,
         {foreignKey: 'reviewId'}
+      ),
+      Review.belongsTo(
+        models.User,
+        {foreignKey: 'userId'}
+      ),
+      Review.belongsTo(
+        models.Spot,
+        {foreignKey: 'spotId'}
       )
     }
   }
@@ -20,9 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     spotId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
     review: DataTypes.STRING,
-    star: DataTypes.INTEGER,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
+    stars: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Review',

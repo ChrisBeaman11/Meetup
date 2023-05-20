@@ -13,6 +13,14 @@ module.exports = (sequelize, DataTypes) => {
       Spot.hasMany(
         models.Review,
         {foreignKey: 'spotId'}
+      ),
+      Spot.belongsTo(
+        models.User,
+        {foreignKey: 'ownerId'}
+      ),
+      Spot.hasMany(
+        models.SpotImage,
+        {foreignKey: 'spotId'}
       )
     }
   }
@@ -26,9 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     lng: DataTypes.DECIMAL,
     name: DataTypes.STRING,
     description: DataTypes.STRING,
-    price: DataTypes.DECIMAL,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE
+    price: DataTypes.DECIMAL
   }, {
     sequelize,
     modelName: 'Spot',
