@@ -35,4 +35,29 @@ router.get('/current', requireAuth, async (req, res) => {
 
 })
 
+router.put('/:bookingId', requireAuth, async (req, res) => {
+//TODO THIS need figure out how to compare dates
+})
+
+router.delete('/:bookingId', requireAuth, async (req, res) => {
+    //TODO
+    //ALMOST WORKS NEED CHECK IF BOOKING HAS STARTED AND return error if so
+    let bookingId = req.params.bookingId;
+    let booking = await Booking.findByPk(bookingId);
+    if(booking){
+        await booking.destroy();
+        res.json({
+            "message": "Successfully deleted"
+          });
+    }
+    else{
+        res.status(404);
+        res.json({
+            "message": "Booking couldn't be found"
+          });
+    }
+})
+
+
+
 module.exports = router;

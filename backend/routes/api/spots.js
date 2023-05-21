@@ -378,4 +378,64 @@ router.post("/:spotId/reviews", requireAuth, async (req, res) => {
   }
 });
 
+router.get('/:spotId/bookings', requireAuth, async (req, res) => {
+    let spotId = req.params.spotId;
+    let arr = [];
+    let userId = req.user.id;
+    let spot = await Spot.findByPk(spotId);
+    if(spot){
+        let ownedBookings = await Booking.findAll({
+            where: {
+                spotId: spotId
+            }
+        })
+        if(spot.ownerId === userId){
+            for(let booking of ownedBookings){
+            let pojo = booking.toJSON();
+            let owner = await User.findByPk(userId,
+                {
+                    attributes: ["id", "firstName", "lastName"]
+                });
+            pojo.User = owner;
+            // console.log(bookings);
+                arr.push(pojo)
+            }
+            res.json({"Bookings": arr});
+
+        }
+        else{
+            let bookings = await Booking.findAll({
+                where: {
+                    spotId: spotId
+                },
+                attributes: ["spotId", "startDate", "endDate"]
+            })
+            res.json({"Bookings": bookings});
+
+        }
+
+    }
+    else{
+        res.status(404);
+        res.json({
+            "message": "Spot couldn't be found"
+          })
+    }
+})
+
+router.post('/:spotId/bookings', requireAuth, async (req, res) => {
+    let userId = req.user.id;
+    let spotId = req.params.spotId;
+    let {startDate, endDate} = req.body;
+    let spot = await Spot.findByPk(spotId);
+    if(spot){
+            //TODO this need figure out how to compare dates
+    }
+    else{
+        res.status(404);
+        res.json({
+            "message": "Spot couldn't be found"
+          })
+    }
+})
 module.exports = router;
