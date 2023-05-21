@@ -13,7 +13,7 @@ const {
 const router = express.Router();
 
 router.get('/current', requireAuth, async (req, res) => {
-    //TODO double check cuz im tired af
+    //TODO get preview image from spot images and exclude description
     let userId = req.user.id;
     let arr = [];
     let bookings = await Booking.findAll({
@@ -34,4 +34,5 @@ router.get('/current', requireAuth, async (req, res) => {
     res.json({"Bookings": arr});
 
 })
+
 module.exports = router;
