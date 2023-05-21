@@ -59,12 +59,15 @@ router.get("/current", requireAuth, async (req, res) => {
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
     let reviewId = req.params.reviewId;
     const {url} = req.body;
-    let review = await findByPk(reviewId);
+    let review = await Review.findByPk(reviewId);
     if(review){
-    let image = ReviewImage.Create({
+    let image = await ReviewImage.create({
         url
     })
-    res.json(review);
+    let pojo = image.toJSON();
+    delete pojo.createdAt;
+    delete pojo.updatedAt;
+    res.json(pojo);
 }
 else{
     res.json({
@@ -75,9 +78,9 @@ else{
 
 router.put('/:reviewId', requireAuth, async (req, res) => {
     let errors = {};
-    let userId = this.user.id;
+    let userId = req.user.id;
     let reviewId = req.params.reviewId;
-    let thisReview = await findByPk(reviewId);
+    let thisReview = await Review.findByPk(reviewId);
     const {review, stars} = req.body;
     if(thisReview){
         const newReview = await Review.create({

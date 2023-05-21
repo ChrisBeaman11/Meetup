@@ -201,7 +201,10 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
       url,
       preview,
     });
-    res.json(spotImage);
+    let pojo = spotImage.toJSON();
+    delete pojo.createdAt;
+    delete pojo.updatedAt;
+    res.json(pojo);
   } else {
     res.json({
       message: "Spot couldn't be found",
@@ -285,6 +288,7 @@ router.put("/:spotId", requireAuth, async (req, res) => {
 });
 
 router.delete("/:spotId", requireAuth, async (req, res) => {
+
   let spotId = req.params.spotId;
   let spot = await Spot.findByPk(spotId);
   if (spot) {
@@ -338,7 +342,6 @@ router.get("/:spotId/reviews", async (req, res) => {
   }
 });
 router.post("/:spotId/reviews", requireAuth, async (req, res) => {
-  //TODO test
   let spotId = req.params.spotId;
   let userId = req.user.id;
   let errors = {};
