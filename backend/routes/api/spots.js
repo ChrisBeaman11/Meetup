@@ -205,10 +205,10 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
     let pojo = spotImage.toJSON();
     delete pojo.createdAt;
     delete pojo.updatedAt;
-    delete pojo.spotId; //TODO retest
+    delete pojo.spotId;
     return res.json(pojo);
   } else {
-    res.status(404); //TODO retest
+    res.status(404);
     return res.json({
       message: "Spot couldn't be found",
     });
@@ -363,7 +363,7 @@ router.post("/:spotId/reviews", requireAuth, async (req, res) => {
 
   let errors = {};
   const { review, stars } = req.body;
-  let spot = await Spot.findByPk(spotId); //TODO retest
+  let spot = await Spot.findByPk(spotId);
   if (spot) {
     const newReview = await Review.create({
       userId: userId,
@@ -374,7 +374,7 @@ router.post("/:spotId/reviews", requireAuth, async (req, res) => {
     if (!req.body.review) {
       errors.review = "Review text is required";
     }
-    if (req.body.stars > 5 || req.body.stars < 1 || !req.body.stars) { //TODO retest
+    if (req.body.stars > 5 || req.body.stars < 1 || !req.body.stars) { 
       errors.stars = "Stars must be an integer from 1 to 5";
     }
     if (!Object.keys(errors).length) {

@@ -46,7 +46,7 @@ router.get('/current', requireAuth, async (req, res) => {
             },
         })
         let pojo1 = spot.toJSON();
-        pojo1.previewImage = spotImage.url;
+        pojo1.previewImage = spotImage ? spotImage.url: null;
         pojo.Spot = pojo1;
         arr.push(pojo);
 }
@@ -121,7 +121,7 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
     let bookingId = req.params.bookingId;
     let booking = await Booking.findByPk(bookingId);
     if(booking){
-        if(booking.startDate<currentDate){ //TODO retest
+        if(booking.startDate<currentDate){ 
             res.status(403);
             return res.json({
                 "message": "Bookings that have been started can't be deleted"

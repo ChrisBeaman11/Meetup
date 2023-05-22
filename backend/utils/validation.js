@@ -105,8 +105,8 @@ const validQuery = ({
     errorResult.errors.maxPrice =
       "Maximum price must be greater than or equal to 0";
   }
-  if (Object.keys(result.errors).length > 0) {
-    throw result;
+  if (Object.keys(errorResult.errors).length > 0) {
+    throw errorResult;
   }
 
   return setOptions({

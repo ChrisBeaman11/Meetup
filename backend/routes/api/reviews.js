@@ -50,7 +50,7 @@ router.get("/current", requireAuth, async (req, res) => {
       },
   })
     let pojo1 = spot.toJSON();
-    pojo1.previewImage = spotImage.url;
+    pojo1.previewImage = spotImage ? spotImage.url: null;
     pojo.Spot = pojo1;
     let reviewImages = await ReviewImage.findAll({
       where: {
@@ -67,7 +67,7 @@ router.get("/current", requireAuth, async (req, res) => {
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
     let reviewId = req.params.reviewId;
     const {url} = req.body;
-    let images = await Image.findAll({
+    let images = await ReviewImage.findAll({ //TODO retest
       where: {
         reviewId
       }
@@ -113,7 +113,6 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
         if(!req.body.review){
             errors.review = "Review text is required";
         }
-        //TODO retest
         if(req.body.stars > 5 || req.body.stars <1 || !req.body.stars){
             errors.stars = "Stars must be an integer from 1 to 5";
         }
