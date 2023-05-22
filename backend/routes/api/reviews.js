@@ -13,6 +13,7 @@ const {
 const router = express.Router();
 
 router.get("/current", requireAuth, async (req, res) => {
+ //TODO get preview image from spot images
   let arr = [];
   let userId = req.user.id;
   let reviews = await Review.findAll({
@@ -37,13 +38,21 @@ router.get("/current", requireAuth, async (req, res) => {
         "address",
         "city",
         "state",
+        "country",
         "lat",
         "lng",
         "name",
         "price",
       ],
     });
-    pojo.Spot = spot;
+    let spotImage = await SpotImage.findOne({
+      where: {
+          spotId: review.spotId
+      },
+  })
+    let pojo1 = spot.toJSON();
+    pojo1.previewImage = spotImage.url;
+    pojo.Spot = pojo1;
     let reviewImages = await ReviewImage.findAll({
       where: {
         reviewId: review.id,
@@ -53,7 +62,7 @@ router.get("/current", requireAuth, async (req, res) => {
     pojo.ReviewImages = reviewImages;
     arr.push(pojo)
   }
-  res.json({"Reviews": arr});
+  return res.json({"Reviews": arr});
 });
 
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
@@ -67,10 +76,10 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     let pojo = image.toJSON();
     delete pojo.createdAt;
     delete pojo.updatedAt;
-    res.json(pojo);
+    return res.json(pojo);
 }
 else{
-    res.json({
+    return res.json({
         "message": "Review couldn't be found"
       });
 }
@@ -97,18 +106,18 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
         }
         if(!Object.keys(errors).length){
             res.status(200);
-            res.json(newReview);
+            return res.json(newReview);
             }
             else{
                 res.status(400);
-                res.json({
+                return res.json({
                     "message": "Bad Request", errors
                 });
             }
     }
     else{
         res.status(404);
-        res.json({
+        return res.json({
             "message": "Review couldn't be found"
           });
     }
@@ -118,13 +127,13 @@ router.delete('/:reviewId', requireAuth, async (req, res) => {
     let review = await Spot.findByPk(reviewId);
     if(review){
         await review.destroy();
-        res.json({
+        return res.json({
             "message": "Successfully deleted"
           });
     }
     else{
         res.status(404);
-        res.json({
+        return res.json({
             "message": "Review couldn't be found"
           });
     }

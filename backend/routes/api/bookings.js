@@ -13,7 +13,6 @@ const {
 const router = express.Router();
 
 router.get('/current', requireAuth, async (req, res) => {
-    //TODO get preview image from spot images and exclude description
     let userId = req.user.id;
     let arr = [];
     let bookings = await Booking.findAll({
@@ -26,12 +25,31 @@ router.get('/current', requireAuth, async (req, res) => {
     let spot = await Spot.findOne({
         where: {
             id: booking.spotId
-        }
-    })
-    pojo.Spot = spot;
-    arr.push(pojo);
+        },
+        attributes: [
+            "id",
+            "ownerId",
+            "address",
+            "city",
+            "state",
+            "country",
+            "lat",
+            "lng",
+            "name",
+            "price",
+          ],
+        });
+        let spotImage = await SpotImage.findOne({
+            where: {
+                spotId: booking.spotId
+            },
+        })
+        let pojo1 = spot.toJSON();
+        pojo1.previewImage = spotImage.url;
+        pojo.Spot = pojo1;
+        arr.push(pojo);
 }
-    res.json({"Bookings": arr});
+    return res.json({"Bookings": arr});
 
 })
 
@@ -46,13 +64,13 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
     let booking = await Booking.findByPk(bookingId);
     if(booking){
         await booking.destroy();
-        res.json({
+        return res.json({
             "message": "Successfully deleted"
           });
     }
     else{
         res.status(404);
-        res.json({
+        return res.json({
             "message": "Booking couldn't be found"
           });
     }
