@@ -67,13 +67,13 @@ router.get("/current", requireAuth, async (req, res) => {
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
     let reviewId = req.params.reviewId;
     const {url} = req.body;
-    let images = await ReviewImage.findAll({ //TODO retest
+    let images = await ReviewImage.count({ //TODO retest
       where: {
         reviewId
       }
     })
-    if(images.length>=10){
-      res.status(403); //TODO retest
+    if(images>=10){ //TODO retest
+      res.status(403);
       return res.json({
         "message": "Maximum number of images for this resource was reached"
       })
@@ -86,11 +86,11 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     let pojo = image.toJSON();
     delete pojo.createdAt;
     delete pojo.updatedAt;
-    delete pojo.reviewId; //TODO retest
+    delete pojo.reviewId;
     return res.json(pojo);
 }
 else{
-    res.status(404); //TODO retest
+    res.status(404);
     return res.json({
         "message": "Review couldn't be found"
       });
