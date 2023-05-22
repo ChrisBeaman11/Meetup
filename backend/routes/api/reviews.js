@@ -67,6 +67,17 @@ router.get("/current", requireAuth, async (req, res) => {
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
     let reviewId = req.params.reviewId;
     const {url} = req.body;
+    let images = await Image.findAll({
+      where: {
+        reviewId
+      }
+    })
+    if(images.length>=10){
+      res.status(403); //TODO retest
+      return res.json({
+        "message": "Maximum number of images for this resource was reached"
+      })
+    }
     let review = await Review.findByPk(reviewId);
     if(review){
     let image = await ReviewImage.create({
@@ -75,9 +86,11 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     let pojo = image.toJSON();
     delete pojo.createdAt;
     delete pojo.updatedAt;
+    delete pojo.reviewId; //TODO retest
     return res.json(pojo);
 }
 else{
+    res.status(404); //TODO retest
     return res.json({
         "message": "Review couldn't be found"
       });
@@ -100,7 +113,8 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
         if(!req.body.review){
             errors.review = "Review text is required";
         }
-        if(req.body.stars > 5 || req.body.stars <1){
+        //TODO retest
+        if(req.body.stars > 5 || req.body.stars <1 || !req.body.stars){
             errors.stars = "Stars must be an integer from 1 to 5";
         }
         if(!Object.keys(errors).length){

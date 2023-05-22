@@ -55,6 +55,7 @@ router.get('/current', requireAuth, async (req, res) => {
 })
 
 router.put('/:bookingId', requireAuth, async (req, res) => {
+    //TODO retest
     let errors = {};
     let userId = req.user.id;
     let bookingId = req.params.bookingId;
@@ -119,12 +120,13 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
     let currentDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
     let bookingId = req.params.bookingId;
     let booking = await Booking.findByPk(bookingId);
-    if(booking.startDate<currentDate){
-        return res.json({
-            "message": "Bookings that have been started can't be deleted"
-          });
-    }
     if(booking){
+        if(booking.startDate<currentDate){ //TODO retest
+            res.status(403);
+            return res.json({
+                "message": "Bookings that have been started can't be deleted"
+              });
+        }
         await booking.destroy();
         return res.json({
             "message": "Successfully deleted"

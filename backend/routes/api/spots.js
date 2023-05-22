@@ -12,9 +12,10 @@ const {
 const router = express.Router();
 
 router.get("/", async (req, res) => {
+const { options, page, size } = validateQuery(req.query);
   let arr = [];
 
-  const spots = await Spot.findAll();
+  const spots = await Spot.findAll(options);
   for (let spot of spots) {
     let sumOfStars = 0;
     const numOfReviews = await Review.count({
@@ -47,7 +48,7 @@ router.get("/", async (req, res) => {
     }
     arr.push(pojo);
   }
-  return res.json({ Spots: arr });
+  return res.json({ Spots: arr, page, size});
 });
 
 router.get("/current", requireAuth, async (req, res) => {
@@ -203,8 +204,10 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
     let pojo = spotImage.toJSON();
     delete pojo.createdAt;
     delete pojo.updatedAt;
+    delete pojo.spotId; //TODO retest
     return res.json(pojo);
   } else {
+    res.status(404); //TODO retest
     return res.json({
       message: "Spot couldn't be found",
     });
@@ -343,9 +346,23 @@ router.get("/:spotId/reviews", async (req, res) => {
 router.post("/:spotId/reviews", requireAuth, async (req, res) => {
   let spotId = req.params.spotId;
   let userId = req.user.id;
+  let reviewExists = await Review.findOne({
+    where: {
+        spotId: spotId,
+        userId: userId
+    }
+  })
+
+    if(reviewExists){
+        res.status(500);
+        return res.json({
+            "message": "User already has a review for this spot"
+          })
+    }
+
   let errors = {};
   const { review, stars } = req.body;
-  let spot = Spot.findByPk(spotId);
+  let spot = await Spot.findByPk(spotId); //TODO retest
   if (spot) {
     const newReview = await Review.create({
       userId: userId,
@@ -356,7 +373,7 @@ router.post("/:spotId/reviews", requireAuth, async (req, res) => {
     if (!req.body.review) {
       errors.review = "Review text is required";
     }
-    if (req.body.stars > 5 || req.body.stars < 1) {
+    if (req.body.stars > 5 || req.body.stars < 1 || !req.body.stars) { //TODO retest
       errors.stars = "Stars must be an integer from 1 to 5";
     }
     if (!Object.keys(errors).length) {
