@@ -9,7 +9,6 @@ const {
   SpotImage,
   sequelize,
 } = require("../../db/models");
-const e = require("express");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
