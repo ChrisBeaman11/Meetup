@@ -12,7 +12,7 @@ const {
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-const { options, page, size } = validateQuery(req.query);
+const { options, page, size } = validQuery(req.query);
   let arr = [];
 
   const spots = await Spot.findAll(options);
