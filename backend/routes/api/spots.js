@@ -430,7 +430,6 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     let spot = await Spot.findByPk(spotId);
     if(spot){
         let errors = {};
-            //TODO this need figure out how to compare dates
             if(endDate<= startDate){
                 res.status(400);
                  return res.json({
@@ -439,6 +438,15 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
                       "endDate": "endDate cannot be on or before startDate"
                     }
                   });
+            }
+            let bookings = await Booking.findAll();
+            for(let booking of bookings){
+                if(booking.startDate <=startDate && booking.endDate>=startDate){
+                    errors.startDate = "Start date conflicts with an existing booking";
+                }
+                if(booking.startDate <=endDate && booking.endDate>=endDate){
+                    errors.endDate = "End date conflicts with an existing booking";
+                }
             }
             if(Object.keys(errors).length){
                 res.status(403);
