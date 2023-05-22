@@ -9,6 +9,7 @@ const {
   SpotImage,
   sequelize,
 } = require("../../db/models");
+const {validQuery} = require('../../utils/validation');
 const router = express.Router();
 
 router.get("/", async (req, res) => {
