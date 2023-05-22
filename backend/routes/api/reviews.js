@@ -13,7 +13,6 @@ const {
 const router = express.Router();
 
 router.get("/current", requireAuth, async (req, res) => {
- //TODO get preview image from spot images
   let arr = [];
   let userId = req.user.id;
   let reviews = await Review.findAll({
