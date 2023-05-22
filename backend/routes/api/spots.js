@@ -96,7 +96,7 @@ router.get("/current", requireAuth, async (req, res) => {
 });
 
 router.get("/:spotId", async (req, res) => {
-  let spotId = parseInt(req.params.spotId);
+  let spotId = req.params.spotId;
   let spot = await Spot.findByPk(spotId);
   if (spot) {
     const numOfReviews = await Review.count({
@@ -125,6 +125,7 @@ router.get("/:spotId", async (req, res) => {
       attributes: ["id", "firstName", "lastName"],
     });
     let pojo = spot.toJSON();
+    console.log(spotImages);
     pojo.numReviews = numOfReviews;
     pojo.avgStarRating = avgRating;
     pojo.SpotImages = spotImages;
@@ -201,12 +202,11 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
     let spotImage = await SpotImage.create({
       url,
       preview,
+      spotId
     });
-    let pojo = spotImage.toJSON();
-    delete pojo.createdAt;
-    delete pojo.updatedAt;
-    delete pojo.spotId;
-    return res.json(pojo);
+
+
+    return res.json({id: spotImage.id, url: spotImage.url, preview: spotImage.preview});
   } else {
     res.status(404);
     return res.json({
@@ -316,7 +316,9 @@ router.get("/:spotId/reviews", async (req, res) => {
       where: {
         spotId: spotId,
       },
+      include: [{model: ReviewImage, attributes: ["id", "url"]}]
     });
+
     for (let review of reviews) {
       let pojo = review.toJSON();
       let user = await User.findOne({
@@ -326,13 +328,6 @@ router.get("/:spotId/reviews", async (req, res) => {
         attributes: ["id", "firstName", "lastName"],
       });
       pojo.User = user;
-      let reviewImages = await ReviewImage.findAll({
-        where: {
-          reviewId: review.id,
-        },
-        attributes: ["id", "url"],
-      });
-      pojo.ReviewImages = reviewImages;
       arr.push(pojo);
     }
 
@@ -374,7 +369,7 @@ router.post("/:spotId/reviews", requireAuth, async (req, res) => {
     if (!req.body.review) {
       errors.review = "Review text is required";
     }
-    if (req.body.stars > 5 || req.body.stars < 1 || !req.body.stars) { 
+    if (req.body.stars > 5 || req.body.stars < 1 || !req.body.stars) {
       errors.stars = "Stars must be an integer from 1 to 5";
     }
     if (!Object.keys(errors).length) {

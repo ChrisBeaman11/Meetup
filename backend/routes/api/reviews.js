@@ -81,13 +81,10 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     let review = await Review.findByPk(reviewId);
     if(review){
     let image = await ReviewImage.create({
-        url
+        url,
+        reviewId
     })
-    let pojo = image.toJSON();
-    delete pojo.createdAt;
-    delete pojo.updatedAt;
-    delete pojo.reviewId;
-    return res.json(pojo);
+    return res.json({url: image.url, id: image.id});
 }
 else{
     res.status(404);

@@ -30,7 +30,8 @@ module.exports = {
         firstName: 'Jane',
         lastName: 'Doe',
         hashedPassword: bcrypt.hashSync('password3')
-      }
+      },
+      
     ], {});
   },
 
