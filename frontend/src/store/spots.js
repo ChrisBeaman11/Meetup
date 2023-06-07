@@ -36,6 +36,17 @@ export const fetchSingleSpot = (id) => async (dispatch) => {
     console.error("Failed to fetch the spot:", err);
   }
 };
+export const deleteSingleSpot = (id) => async (dispatch) => {
+  try {
+    const response = await fetch(`/api/spots/${id}`, { method: "DELETE" });
+    if (response.ok) {
+      const spot = await response.json();
+      dispatch(removeReport(id));
+    }
+  } catch (err) {
+    console.log("Failed to fetch the spot:", err);
+  }
+};
 
 const spotsReducer = (state = {}, action) => {
   switch (action.type) {
