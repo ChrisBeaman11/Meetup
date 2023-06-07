@@ -5,12 +5,12 @@ export const loadAllSpots = (spots) => ({
   type: LOAD_ALL_SPOTS,
   spots,
 });
-export const receiveSpot = (report) => ({
+export const receiveSpot = (spot) => ({
   type: RECEIVE_SPOT,
   spot,
 });
 
-export const removeSpot = (reportId) => ({
+export const removeSpot = (spotId) => ({
   type: REMOVE_SPOT,
   spotId,
 });
