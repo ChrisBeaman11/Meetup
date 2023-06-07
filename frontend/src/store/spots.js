@@ -24,7 +24,7 @@ export const fetchAllSpots = () => async (dispatch) => {
 };
 
 
-export const fetchSingleReport = (id) => async (dispatch) => {
+export const fetchSingleSpot = (id) => async (dispatch) => {
   try {
     const response = await fetch(`/api/spots/${id}`);
     if (!response.ok) {
