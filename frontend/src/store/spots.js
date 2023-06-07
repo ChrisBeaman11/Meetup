@@ -1,13 +1,18 @@
 export const LOAD_ALL_SPOTS = "spots/LOAD_ALL_SPOTS"
 export const RECEIVE_SPOT = "reports/RECEIVE_SPOT";
-
+export const REMOVE_REPORT = "reports/REMOVE_REPORT";
 export const loadAllSpots = (spots) => ({
   type: LOAD_ALL_SPOTS,
   spots,
 });
-export const receiveReport = (report) => ({
+export const receiveSpot = (report) => ({
   type: RECEIVE_SPOT,
-  report,
+  spot,
+});
+
+export const removeSpot = (reportId) => ({
+  type: REMOVE_SPOT,
+  spotId,
 });
 
 export const fetchAllSpots = () => async (dispatch) => {
@@ -31,7 +36,7 @@ export const fetchSingleSpot = (id) => async (dispatch) => {
       throw new Error("Failed to fetch single spot");
     }
     const spot = await response.json();
-    dispatch(receiveReport(spot));
+    dispatch(receiveSpot(spot));
   } catch (err) {
     console.error("Failed to fetch the spot:", err);
   }
@@ -41,7 +46,7 @@ export const deleteSingleSpot = (id) => async (dispatch) => {
     const response = await fetch(`/api/spots/${id}`, { method: "DELETE" });
     if (response.ok) {
       const spot = await response.json();
-      dispatch(removeReport(id));
+      dispatch(removeSpot(id));
     }
   } catch (err) {
     console.log("Failed to fetch the spot:", err);
