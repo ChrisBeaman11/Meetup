@@ -1,0 +1,11 @@
+/* .paneContainer{
+    width: 20%;
+} */
+img{
+    width: 100%;
+    height: 300px;
+}
+.firstLinePane{
+    display: flex;
+    justify-content: space-between;
+}

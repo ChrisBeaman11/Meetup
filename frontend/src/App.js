@@ -10,12 +10,13 @@ import { fetchAllSpots } from "./store/spots";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const [calledOnce, setCalledOnce] = useState(false);
+
   // const store = useContext(store);
-  if (!calledOnce && isLoaded) {
-    dispatch(fetchAllSpots());
-    setCalledOnce(true);
-  }
+  // if (!calledOnce && isLoaded) {
+  // const dispatch = useDispatch();
+  // dispatch(fetchAllSpots());
+  //   setCalledOnce(true);
+  // }
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);

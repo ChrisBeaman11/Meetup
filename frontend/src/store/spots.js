@@ -1,6 +1,6 @@
-export const LOAD_ALL_SPOTS = "spots/LOAD_ALL_SPOTS"
+export const LOAD_ALL_SPOTS = "spots/LOAD_ALL_SPOTS";
 export const RECEIVE_SPOT = "reports/RECEIVE_SPOT";
-export const REMOVE_REPORT = "reports/REMOVE_REPORT";
+export const REMOVE_SPOT = "reports/REMOVE_REPORT";
 export const loadAllSpots = (spots) => ({
   type: LOAD_ALL_SPOTS,
   spots,
@@ -27,7 +27,6 @@ export const fetchAllSpots = () => async (dispatch) => {
     console.log("Failed to fetch spots:", err);
   }
 };
-
 
 export const fetchSingleSpot = (id) => async (dispatch) => {
   try {
@@ -57,12 +56,13 @@ const spotsReducer = (state = {}, action) => {
   switch (action.type) {
     case LOAD_ALL_SPOTS:
       let allSpots = {};
-      action.spots.spots.map((spot) => {
-        let id = spot[id];
+      action.spots.Spots.map((spot) => {
+        let id = spot["id"];
         allSpots[id] = spot;
       });
-      let spots = { allSpots };
-      return { ...state, spots};
+      return { ...state, allSpots };
+    case RECEIVE_SPOT:
+      return {...state, 'selectedSpot': action.spot};
     default:
       return state;
   }
