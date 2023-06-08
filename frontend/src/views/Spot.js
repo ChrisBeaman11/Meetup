@@ -8,11 +8,19 @@ export default function Spot(props) {
   const dispatch = useDispatch();
 
   //ALL YOUR DATA IS HERE
-  const spot = useSelector((state) => state?.spot?.selectedSpot);
+  const spot = useSelector((state) => state.spots.selectedSpot);
+  console.log("THIS IS MY SPOT", spot);
 
   useEffect(() => {
     dispatch(fetchSingleSpot(spotId));
   }, [dispatch, spotId]);
-
-  return <div class="paneContainer">I WORK I MADE IT HERE</div>;
+  if(!spot) return null;
+  return <div class="paneContainer"><h2>{spot.name}</h2>
+  <h3>{`${spot.city}, ${spot.state}, ${spot.country}`}</h3>
+  <img src="https://l.icdbcdn.com/oh/60907f50-c4d6-4044-9422-b536a7fdabfa.jpg?w=2080" alt="PHOTO UNAVAILABLE" />
+  {spot.Owner && <h2>{`Hosted by ${spot.Owner.firstName} ${spot.Owner.lastName}`}</h2>}
+  <p>{spot.description}</p>
+  <hr />
+  <p>{spot.avgRating} with {spot.numReviews} reviews</p>
+  </div>;
 }

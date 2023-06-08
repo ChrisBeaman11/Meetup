@@ -18,7 +18,7 @@ const Landing = () => {
     setCalledOnce(true);
   }
 
-  const spots = useSelector((state) => Object.values(state?.spots?.allSpots || [])) || [];
+  const spots = useSelector((state) => Object.values(state.spots.allSpots));
 
 
   console.log("look at me ", spots);

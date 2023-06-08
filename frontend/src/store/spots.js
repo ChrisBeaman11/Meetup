@@ -1,3 +1,5 @@
+import { csrfFetch } from "./csrf";
+
 export const LOAD_ALL_SPOTS = "spots/LOAD_ALL_SPOTS";
 export const RECEIVE_SPOT = "reports/RECEIVE_SPOT";
 export const REMOVE_SPOT = "reports/REMOVE_REPORT";
@@ -17,7 +19,7 @@ export const removeSpot = (spotId) => ({
 
 export const fetchAllSpots = () => async (dispatch) => {
   try {
-    const response = await fetch("/api/spots");
+    const response = await csrfFetch("/api/spots");
     if (!response.ok) {
       throw new Error("Failed to fetch spots");
     }
@@ -30,7 +32,7 @@ export const fetchAllSpots = () => async (dispatch) => {
 
 export const fetchSingleSpot = (id) => async (dispatch) => {
   try {
-    const response = await fetch(`/api/spots/${id}`);
+    const response = await csrfFetch(`/api/spots/${id}`);
     if (!response.ok) {
       throw new Error("Failed to fetch single spot");
     }
@@ -42,7 +44,7 @@ export const fetchSingleSpot = (id) => async (dispatch) => {
 };
 export const deleteSingleSpot = (id) => async (dispatch) => {
   try {
-    const response = await fetch(`/api/spots/${id}`, { method: "DELETE" });
+    const response = await csrfFetch(`/api/spots/${id}`, { method: "DELETE" });
     if (response.ok) {
       const spot = await response.json();
       dispatch(removeSpot(id));
@@ -51,8 +53,23 @@ export const deleteSingleSpot = (id) => async (dispatch) => {
     console.log("Failed to fetch the spot:", err);
   }
 };
+export const createSingleSpot = (spot) => async (dispatch) => {
+  try {
+    const response = await csrfFetch(`/api/spots}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(spot),
+    });
+    if(response.ok){
+    const createdSpot = await response.json();
+    dispatch(receiveSpot(createdSpot));
+    }
+  } catch (err) {
+    console.log("Failed to create the report:", err);
+  }
+};
 
-const spotsReducer = (state = {}, action) => {
+const spotsReducer = (state = { allSpots: {}, selectedSpot: {} }, action) => {
   switch (action.type) {
     case LOAD_ALL_SPOTS:
       let allSpots = {};
@@ -62,7 +79,9 @@ const spotsReducer = (state = {}, action) => {
       });
       return { ...state, allSpots };
     case RECEIVE_SPOT:
-      return {...state, 'selectedSpot': action.spot};
+      console.log("this iS ACTION.SPOT:", action.spot);
+      return { ...state, selectedSpot: action.spot };
+
     default:
       return state;
   }
