@@ -1,0 +1,21 @@
+.menu{
+
+    width: 100px;
+    height: 50px;
+    border-radius: 20%;
+}
+.NavContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.SubNav {
+    display: flex;
+
+    align-content: center;
+}
+
+.logo{
+    width: 200px;
+    height: 75px;
+}

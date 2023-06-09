@@ -1,14 +1,26 @@
 import { csrfFetch } from "./csrf";
 
 export const LOAD_ALL_SPOTS = "spots/LOAD_ALL_SPOTS";
-export const RECEIVE_SPOT = "reports/RECEIVE_SPOT";
-export const REMOVE_SPOT = "reports/REMOVE_REPORT";
+export const RECEIVE_SPOT = "spots/RECEIVE_SPOT";
+export const RECEIVE_NEW_SPOT = "spots/RECEIVE_NEW_SPOT";
+export const REMOVE_SPOT = "spots/REMOVE_REPORT";
+export const UPDATE_SPOT = "spots/UPDATE_SPOT";
+
+export const updateSpot = (spot) => ({
+  type: UPDATE_SPOT,
+  spot,
+});
+
 export const loadAllSpots = (spots) => ({
   type: LOAD_ALL_SPOTS,
   spots,
 });
 export const receiveSpot = (spot) => ({
   type: RECEIVE_SPOT,
+  spot,
+});
+export const receiveNewSpot = (spot) => ({
+  type: RECEIVE_NEW_SPOT,
   spot,
 });
 
@@ -55,14 +67,30 @@ export const deleteSingleSpot = (id) => async (dispatch) => {
 };
 export const createSingleSpot = (spot) => async (dispatch) => {
   try {
-    const response = await csrfFetch(`/api/spots}`, {
+    const response = await csrfFetch(`/api/spots`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(spot),
     });
-    if(response.ok){
-    const createdSpot = await response.json();
-    dispatch(receiveSpot(createdSpot));
+    if (response.ok) {
+      const createdSpot = await response.json();
+      dispatch(receiveNewSpot(createdSpot));
+    }
+  } catch (err) {
+    console.log("Failed to create the report:", err);
+  }
+};
+
+export const updateSingleSpot = (spot) => async (dispatch) => {
+  try {
+    const response = await csrfFetch(`/api/spots/${spot.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(spot),
+    });
+    if (response.ok) {
+      const updated = await response.json();
+      dispatch(receiveNewSpot(updated));
     }
   } catch (err) {
     console.log("Failed to create the report:", err);
@@ -79,9 +107,15 @@ const spotsReducer = (state = { allSpots: {}, selectedSpot: {} }, action) => {
       });
       return { ...state, allSpots };
     case RECEIVE_SPOT:
-      console.log("this iS ACTION.SPOT:", action.spot);
       return { ...state, selectedSpot: action.spot };
-
+    case RECEIVE_NEW_SPOT:
+      let as = state.allSpots;
+      as[action.spot.id] = action.spot;
+      return { ...state, allSpots: as, selectedSpot: action.spot };
+    case UPDATE_SPOT:
+      let all = state.allSpots;
+      all[action.spot.id] = action.spot;
+      return { ...state, allSpots: all };
     default:
       return state;
   }

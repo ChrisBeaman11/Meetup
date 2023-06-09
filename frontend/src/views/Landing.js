@@ -4,10 +4,7 @@ import SpotPane from "../components/SpotPane";
 import { fetchAllSpots } from "../store/spots";
 import Loading from "../components/Loading";
 import { Suspense, useState, useContext } from "react";
-import './Landing.css';
-//TODO we want to show a gird of spots
-//call backend to load all spots data
-//
+import "./Landing.css";
 
 const Landing = () => {
   const [calledOnce, setCalledOnce] = useState(false);
@@ -20,13 +17,11 @@ const Landing = () => {
 
   const spots = useSelector((state) => Object.values(state.spots.allSpots));
 
-
-  console.log("look at me ", spots);
   return (
     <Suspense fallback={<Loading />}>
-      <div class="GridContainer">
+      <div className="GridContainer">
         {spots.map((spot) => {
-          return <SpotPane spot={spot} />;
+          return <SpotPane key={spot.id} spot={spot} />;
         })}
       </div>
     </Suspense>
