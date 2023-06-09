@@ -47,6 +47,7 @@ router.get("/", async (req, res) => {
     }
     arr.push(pojo);
   }
+  console.log("THIS IS MY ARR", arr)
   return res.json({ Spots: arr, page, size });
 });
 
@@ -196,7 +197,6 @@ router.post("/", requireAuth, async (req, res) => {
       e,
     });
   }
-
 });
 router.post("/:spotId/images", requireAuth, async (req, res) => {
   let spotId = req.params.spotId;

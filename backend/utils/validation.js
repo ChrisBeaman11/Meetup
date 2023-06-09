@@ -1,4 +1,4 @@
-const { validationResult } = require('express-validator');
+const { validationResult } = require("express-validator");
 
 // middleware for formatting errors from express-validator middleware
 // (to customize, see express-validator's documentation)
@@ -9,7 +9,7 @@ const handleValidationErrors = (req, _res, next) => {
     const errors = {};
     validationErrors
       .array()
-      .forEach(error => errors[error.param] = error.msg);
+      .forEach((error) => (errors[error.param] = error.msg));
 
     const err = Error("Bad request.");
     err.errors = errors;
@@ -32,7 +32,7 @@ const setOptions = ({
   let options = { where: {} };
 
   page = page ?? 1;
-  size = size ?? 20;
+  size = size ?? 40;
   options.limit = size;
   options.offset = (page - 1) * size;
 
@@ -123,5 +123,5 @@ const validQuery = ({
 
 module.exports = {
   handleValidationErrors,
-  validQuery
+  validQuery,
 };
