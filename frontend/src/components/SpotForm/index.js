@@ -18,7 +18,7 @@ const SpotForm = ({ spot, formType }) => {
   const [previewImages, setPreviewImages] = useState(spot?.previewImages || "");
   const [isUpdate, _] = useState(spot != null);
 
-  //   const [inFlight, setInFlight] = useState(false);
+  // const [inFlight, setInFlight] = useState(false);
 
   const [errors, setErrors] = useState({});
 
@@ -26,30 +26,35 @@ const SpotForm = ({ spot, formType }) => {
     e.preventDefault();
     setErrors({});
     // setInFlight(true);
-    spot = {
+    const newSpot = {
       ...spot,
       country,
       streetAddress,
       city,
       state,
       description,
+      price,
       name,
       previewImages,
     };
 
     if (isUpdate) {
-      dispatch(updateSingleSpot(spot));
+      dispatch(updateSingleSpot(newSpot)).then(() =>
+        history.push(`/spots/${spot.id}`)
+      );
     } else {
-      dispatch(createSingleSpot(spot));
+      dispatch(createSingleSpot(newSpot)).then((id) =>
+        history.push(`/spots/${id}`)
+      );
     }
-    // setInFlight(false);
   };
+  // setInFlight(false);
 
-  // useEffect(() => {
-  //   if (inFlight === false && spotLoaded.id) {
-  //     history.push(`spots/${spot.id}`);
-  //   }
-  // }, [inFlight]);
+  //   useEffect(() => {
+  //     if (inFlight === false && spotLoaded.id) {
+  //       history.push(`spots/${spot.id}`);
+  //     }
+  //   }, [inFlight]);
 
   useEffect(() => {
     let errorObj = {};
@@ -87,7 +92,7 @@ const SpotForm = ({ spot, formType }) => {
     price,
     previewImages,
   ]);
-
+  console.log(errors);
   return (
     <form onSubmit={handleSubmit} className="createSpotForm">
       <div className="FormContainer">

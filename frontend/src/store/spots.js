@@ -67,14 +67,15 @@ export const deleteSingleSpot = (id) => async (dispatch) => {
 };
 export const createSingleSpot = (spot) => async (dispatch) => {
   try {
+    console.log("THIS IS MY SPOT", spot);
     const response = await csrfFetch(`/api/spots`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(spot),
     });
     if (response.ok) {
       const createdSpot = await response.json();
       dispatch(receiveNewSpot(createdSpot));
+      return createdSpot.id;
     }
   } catch (err) {
     console.log("Failed to create the report:", err);
@@ -85,7 +86,6 @@ export const updateSingleSpot = (spot) => async (dispatch) => {
   try {
     const response = await csrfFetch(`/api/spots/${spot.id}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(spot),
     });
     if (response.ok) {
@@ -111,7 +111,7 @@ const spotsReducer = (state = { allSpots: {}, selectedSpot: {} }, action) => {
     case RECEIVE_NEW_SPOT:
       let as = state.allSpots;
       as[action.spot.id] = action.spot;
-      return { ...state, allSpots: as, selectedSpot: action.spot };
+      return { allSpots: as, selectedSpot: action.spot };
     case UPDATE_SPOT:
       let all = state.allSpots;
       all[action.spot.id] = action.spot;

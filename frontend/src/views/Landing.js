@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SpotPane from "../components/SpotPane";
 import { fetchAllSpots } from "../store/spots";
@@ -10,10 +10,9 @@ const Landing = () => {
   const [calledOnce, setCalledOnce] = useState(false);
   const dispatch = useDispatch();
 
-  if (!calledOnce) {
+  useEffect(() => {
     dispatch(fetchAllSpots());
-    setCalledOnce(true);
-  }
+  }, [dispatch]);
 
   const spots = useSelector((state) => Object.values(state.spots.allSpots));
 
