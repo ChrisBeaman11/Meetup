@@ -32,7 +32,7 @@ const setOptions = ({
   let options = { where: {} };
 
   page = page ?? 1;
-  size = size ?? 40;
+  size = size ?? 20;
   options.limit = size;
   options.offset = (page - 1) * size;
 
