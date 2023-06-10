@@ -5,6 +5,13 @@ export const RECEIVE_SPOT = "spots/RECEIVE_SPOT";
 export const RECEIVE_NEW_SPOT = "spots/RECEIVE_NEW_SPOT";
 export const UPDATE_SPOT = "spots/UPDATE_SPOT";
 export const REMOVE_SPOT = "spots/REMOVE_SPOT";
+export const LOAD_ALL_REVIEWS_BY_SPOT = "reviews/LOAD_ALL_REVIEWS_BY_SPOT";
+
+export const loadAllReviews = (reviews) => ({
+  type: LOAD_ALL_REVIEWS_BY_SPOT,
+  reviews,
+});
+
 export const updateSpot = (spot) => ({
   type: UPDATE_SPOT,
   spot,
@@ -65,7 +72,6 @@ export const deleteSingleSpot = (id) => async (dispatch) => {
 };
 export const createSingleSpot = (spot) => async (dispatch) => {
   try {
-    console.log("THIS IS MY SPOT", spot);
     const response = await csrfFetch(`/api/spots`, {
       method: "POST",
       body: JSON.stringify(spot),
@@ -95,9 +101,23 @@ export const updateSingleSpot = (spot) => async (dispatch) => {
   }
 };
 
+// export const fetchAllReviewsBySpot = (spotId) => async (dispatch) => {
+//   try {
+//     const response = await csrfFetch(`api/spots/${spotId}/reviews`);
+//     if (!response.ok) {
+//       throw new Error("Failed to fetch reviews");
+//     }
+//     const reviews = await response.json();
+//     dispatch(loadAllSpots(reviews));
+//   } catch (err) {
+//     console.log("Failed to fetch reviews:", err);
+//   }
+// };
 
-
-const spotsReducer = (state = { allSpots: {}, selectedSpot: {} }, action) => {
+const spotsReducer = (
+  state = { allSpots: {}, selectedSpot: {} },
+  action
+) => {
   switch (action.type) {
     case LOAD_ALL_SPOTS:
       let allSpots = {};
@@ -106,6 +126,8 @@ const spotsReducer = (state = { allSpots: {}, selectedSpot: {} }, action) => {
         allSpots[id] = spot;
       });
       return { ...state, allSpots };
+    case LOAD_ALL_REVIEWS_BY_SPOT:
+      return { ...state, 'reviews': action.Reviews};
     case RECEIVE_SPOT:
       return { ...state, selectedSpot: action.spot };
     case RECEIVE_NEW_SPOT:
@@ -116,8 +138,8 @@ const spotsReducer = (state = { allSpots: {}, selectedSpot: {} }, action) => {
       let all = state.allSpots;
       all[action.spot.id] = action.spot;
       return { ...state, allSpots: all };
-      case REMOVE_SPOT:
-        return 
+    case REMOVE_SPOT:
+      return;
     default:
       return state;
   }
