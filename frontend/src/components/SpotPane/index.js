@@ -11,6 +11,7 @@ export default function SpotPane(props) {
   return (
     <div className="paneContainer">
       <img
+      className = "paneImage"
         onClick={() => {
           history.push(`/spots/${id}`);
         }}
@@ -21,7 +22,7 @@ export default function SpotPane(props) {
         <p>{`${spot.city}, ${spot.state}`}</p>
         <p>{spot.avgRating}</p>
       </div>
-      <p className="price">{`$${spot.price} night`}</p>
+      <p className="price">{`$${spot.price}`} <span className="spanPrice">night</span> </p>
       {props.footer ? (
         <div style={{ display: "flex" }}>
           <button

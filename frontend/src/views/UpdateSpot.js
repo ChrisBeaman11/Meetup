@@ -5,8 +5,8 @@ import { useSelector } from "react-redux";
 
 export default function UpdateSpot() {
   let { spotId } = useParams();
-  const alLSpots = useSelector((state) => state.spots.allSpots);
-  const getSpot = alLSpots[spotId];
+  const allSpots = useSelector((state) => state.spots.allSpots);
+  const getSpot = allSpots[spotId];
 
   return (
     <>

@@ -16,7 +16,7 @@ function Navigation({ isLoaded }) {
   return (
     <div className="NavContainer">
 
-      <img onClick = {() => history.push('/')}className = "logo" src="https://banner2.cleanpng.com/20180907/il/kisspng-logo-airbnb-jpeg-brand-vector-graphics-madaz-money-learn-to-day-trade-stocks-penny-stoc-5b92a0f47ddf87.1656733615363361165156.jpg" alt="LOGO NOT WORKING" />
+      <h1 onClick = {() => history.push('/')}className = "logo">airbnb</h1> <h1/>
     <div className="SubNav">
       <CreateSpotButton/>
       <button className = "menu"
