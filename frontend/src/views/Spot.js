@@ -16,44 +16,49 @@ export default function Spot(props) {
   // let [showLeaveReview, setShowLeaveReview] = useState(false)
 
   const spot = useSelector((state) => state.spots.selectedSpot);
-  const reviews = useSelector((state) => state.reviews.reviews);
+  const reviews = useSelector((state) => state.reviews.reviews) || [];
   const sessionUser = useSelector((state) => state.session.user);
+
+  // useEffect(() => {
+  //   dispatch(fetchAllReviewsBySpot(spotId));
+  // }, [reviews]);
 
   useEffect(() => {
     dispatch(fetchSingleSpot(spotId));
     dispatch(fetchAllReviewsBySpot(spotId));
-  }, [dispatch, spotId]);
+  }, [spotId]);
 
   if (!spot) return null;
 
   return (
     <>
       <div className="paneContainer">
-        <h2>{spot.name}</h2>
+        <h2 className="spotName">{spot.name}</h2>
         <div className="locationDiv">
-        <h3>{spot.city},</h3>
-        <h3>{spot.state},</h3>
-        <h3>{spot.country}</h3>
+          <h3>{spot.city},</h3>
+          <h3>{spot.state},</h3>
+          <h3>{spot.country}</h3>
         </div>
         <img
-          src="https://l.icdbcdn.com/oh/60907f50-c4d6-4044-9422-b536a7fdabfa.jpg?w=2080"
+          src="https://media.istockphoto.com/id/1150545984/photo/upscale-modern-mansion-with-pool.jpg?s=612x612&w=0&k=20&c=JT7qSGgmlGfiNiqJE2jw6rYwRcYCj9KBs7i2Rmyyypo="
           alt="PHOTO UNAVAILABLE"
         />
         <div className="ownerInfoBoxDiv">
           <div className="ownerDescriptionDiv">
-        {spot.Owner && (
-          <h2>{`Hosted by ${spot.Owner.firstName} ${spot.Owner.lastName}`}</h2>
-        )}
-        <p>{spot.description}</p>
-        </div>
-        <div className="infoBox">
-        <InfoBox/>
-        </div>
+            {spot.Owner && (
+              <h2>{`Hosted by ${spot.Owner.firstName} ${spot.Owner.lastName}`}</h2>
+            )}
+            <p>{spot.description}</p>
+          </div>
+          <div className="infoBox">
+            <InfoBox />
+          </div>
         </div>
         <hr />
         <div className="ReviewContainer">
           <p>
-            {spot.avgRating} with {spot.numReviews} reviews
+            <i class="fas fa-star"></i> {spot.avgStarRating} * {spot.numReviews}{" "}
+            reviews
           </p>
           {reviews.filter((review) => {
             return review.User.id === sessionUser.id;
@@ -67,9 +72,9 @@ export default function Spot(props) {
               Post your review
             </button>
           ) : null}
-          {reviews.map((review, key) => {
+          {reviews.map((review) => {
             return (
-              <div className="reviewItem" key={key}>
+              <div className="reviewItem" key={review.id}>
                 <div className="name">{review.User.firstName}</div>
                 <div className="date">{review.createdAt.split("T")[0]}</div>
                 <div className="review">{review.review}</div>
