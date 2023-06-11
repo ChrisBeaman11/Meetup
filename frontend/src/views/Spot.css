@@ -43,3 +43,25 @@
     width: 1px;
     height: 1px;
 }
+
+.spotImagesContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.rightSide{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 5px;
+}
+.rightSide img{
+    width: 100%;
+    height: 100%;
+}
+.mainPreview{
+    width: 100%;
+    height: 100%;
+}

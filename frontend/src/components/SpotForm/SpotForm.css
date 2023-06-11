@@ -29,3 +29,44 @@ label{
 .errors {
     color: red;
   }
+
+  .previewImagesFields{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .headerStuff{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+.descriptionText{
+    width: 300px;
+}
+
+.titleStuff{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.descriptionStuff{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.priceStuff{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.photoStuff{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

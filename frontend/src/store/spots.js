@@ -70,14 +70,21 @@ export const deleteSingleSpot = (id) => async (dispatch) => {
     console.log("Failed to fetch the spot:", err);
   }
 };
-export const createSingleSpot = (spot) => async (dispatch) => {
+export const createSingleSpot = (spot, images) => async (dispatch) => {
   try {
     const response = await csrfFetch(`/api/spots`, {
       method: "POST",
       body: JSON.stringify(spot),
     });
+
     if (response.ok) {
       const createdSpot = await response.json();
+      createdSpot.SpotImages = [];
+      for(let image of images){
+        await csrfFetch(`/api/spots/${createdSpot.id}/images`, {method: "POST", body: JSON.stringify({url: image})})
+        createdSpot.SpotImages.push({url: image});
+      }
+
       dispatch(receiveNewSpot(createdSpot));
       return createdSpot.id;
     }
@@ -139,8 +146,8 @@ const spotsReducer = (
       all[action.spot.id] = action.spot;
       return { ...state, allSpots: all };
     case REMOVE_SPOT:
-      let returnVal = {...state, allSpots: {...state.allSpots}};
-      delete returnVal.allSpots[action.spotId]
+      return {...state, allSpots: {...state.allSpots, [action.spotId]: null}};
+
     default:
       return state;
   }

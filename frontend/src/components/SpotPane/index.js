@@ -8,14 +8,14 @@ import DeleteSpotPopout from "../DeleteSpotPopout";
 export default function SpotPane(props) {
   let history = useHistory();
   let spot = props.spot;
-  let id = spot.id;
   let dispatch = useDispatch();
   let [showDeleteModal, setShowDeleteModal] = useState(false);
-
+  console.log("SPOT HERE", spot);
   const goToEditForm = () => {
     return history.push(`/spots/${spot.id}/edit`);
   };
-
+  if(!spot) return null;
+  let id = spot.id;
   return (
     <>
       <div>
@@ -28,7 +28,7 @@ export default function SpotPane(props) {
         >
           <img
             className="paneImage"
-            src={`https://media.istockphoto.com/id/1150545984/photo/upscale-modern-mansion-with-pool.jpg?s=612x612&w=0&k=20&c=JT7qSGgmlGfiNiqJE2jw6rYwRcYCj9KBs7i2Rmyyypo=`}
+            src={spot.previewImage}
             alt="photo unavailable"
           />
           <div className="firstLinePane">
@@ -37,7 +37,7 @@ export default function SpotPane(props) {
               <p>{spot.state}</p>
             </div>
             <p>
-              <i class="fas fa-star"></i> {spot.avgRating ?? "New"}
+              <i class="fas fa-star"></i> {spot.avgRating?spot.avgRating.toFixed(2) : "New"}
             </p>
           </div>
           <p className="price">

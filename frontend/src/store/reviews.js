@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 export const LOAD_ALL_REVIEWS_BY_SPOT = "reviews/LOAD_ALL_REVIEWS_BY_SPOT";
 export const POST_NEW_REVIEW = "reviews/POST_NEW_REVIEW";
+export const REMOVE_REVIEW = "reviews/REMOVE_REVIEW";
 
 export const loadAllReviews = (reviews) => ({
   type: LOAD_ALL_REVIEWS_BY_SPOT,
@@ -9,8 +10,12 @@ export const loadAllReviews = (reviews) => ({
 });
 
 export const postNewReview = (reviews) => ({
-  type: LOAD_ALL_REVIEWS_BY_SPOT,
+  type: POST_NEW_REVIEW,
   reviews,
+});
+export const removeReview = (reviewId) => ({
+  type: REMOVE_REVIEW,
+  reviewId,
 });
 
 export const fetchAllReviewsBySpot = (spotId) => async (dispatch) => {
@@ -26,7 +31,7 @@ export const fetchAllReviewsBySpot = (spotId) => async (dispatch) => {
   }
 };
 
-export const createNewReview = (spotId, review, stars) => async (dispatch) => {
+export const createNewReview = (spotId, review, stars, firstName, userId) => async (dispatch) => {
   try {
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
       method: "POST",
@@ -36,9 +41,21 @@ export const createNewReview = (spotId, review, stars) => async (dispatch) => {
       throw new Error("Failed on createNewReview");
     }
     const reviews = await response.json();
-    dispatch(postNewReview(reviews));
+    console.log("DEEZE REVIEWS", reviews);
+    dispatch(postNewReview({firstName, createdAt: reviews.createdAt, review: reviews.review, userId}));
   } catch (err) {
     console.log("Failed on createNewReview:", err);
+  }
+};
+export const deleteSingleReview = (id) => async (dispatch) => {
+  try {
+    const response = await csrfFetch(`/api/reviews/${id}`, { method: "DELETE" });
+    if (response.ok) {
+      const review = await response.json();
+      dispatch(removeReview(id));
+    }
+  } catch (err) {
+    console.log("Failed to fetch the review:", err);
   }
 };
 
@@ -47,9 +64,7 @@ const reviewsReducer = (state = { reviews: [] }, action) => {
     case LOAD_ALL_REVIEWS_BY_SPOT:
       return { ...state, reviews: action.reviews.Reviews };
     case POST_NEW_REVIEW:
-      let old = state.reviews;
-      old.push(action.reviews);
-      return { ...state, reviews: old };
+      return { ...state, reviews: [...state.reviews, action.reviews] };
     default:
       return state;
   }

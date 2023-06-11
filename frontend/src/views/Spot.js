@@ -7,12 +7,13 @@ import { fetchAllReviewsBySpot } from "../store/reviews";
 import PostReviewModal from "../components/PostReviewModal";
 import "./Spot.css";
 import InfoBox from "../components/InfoBoxSpotDetail";
+import DeleteReviewPopout from "../components/DeleteReviewPopout";
 export default function Spot(props) {
   let { spotId } = useParams();
   const dispatch = useDispatch();
 
   let [showModal, setShowModal] = useState(false);
-
+  let [showDeleteModal, setShowDeleteModal] = useState(false);
   // let [showLeaveReview, setShowLeaveReview] = useState(false)
 
   const spot = useSelector((state) => state.spots.selectedSpot);
@@ -27,9 +28,11 @@ export default function Spot(props) {
     dispatch(fetchSingleSpot(spotId));
     dispatch(fetchAllReviewsBySpot(spotId));
   }, [spotId]);
-
+  console.log("MY SPOT", spot);
   if (!spot) return null;
-
+  const hasReview = reviews?.find((r) => r.User?.id===sessionUser?.id)
+  const userOwnsSpot = sessionUser.id === spot.ownerId;
+  let rating = spot.avgStarRating?`${spot.avgStarRating?.toFixed(2)} · ${spot.numReviews} reviews`:"New";
   return (
     <>
       <div className="paneContainer">
@@ -39,10 +42,19 @@ export default function Spot(props) {
           <h3>{spot.state},</h3>
           <h3>{spot.country}</h3>
         </div>
-        <img
-          src="https://media.istockphoto.com/id/1150545984/photo/upscale-modern-mansion-with-pool.jpg?s=612x612&w=0&k=20&c=JT7qSGgmlGfiNiqJE2jw6rYwRcYCj9KBs7i2Rmyyypo="
-          alt="PHOTO UNAVAILABLE"
-        />
+        {spot.SpotImages && (
+          <div className="spotImagesContainer">
+            {spot.SpotImages[0] && (
+              <img className = "mainPreview"src={spot.SpotImages[0].url} alt="PHOTO UNAVAILABLE" />
+            )}
+            <div className="rightSide">
+            {spot.SpotImages[1] && <img src={spot.SpotImages[1].url} alt="" />}
+            {spot.SpotImages[2] && <img src={spot.SpotImages[2].url} alt="" />}
+            {spot.SpotImages[3] && <img src={spot.SpotImages[3].url} alt="" />}
+            {spot.SpotImages[4] && <img src={spot.SpotImages[4].url} alt="" />}
+            </div>
+          </div>
+        )}
         <div className="ownerInfoBoxDiv">
           <div className="ownerDescriptionDiv">
             {spot.Owner && (
@@ -57,32 +69,38 @@ export default function Spot(props) {
         <hr />
         <div className="ReviewContainer">
           <p>
-            <i class="fas fa-star"></i> {spot.avgStarRating} * {spot.numReviews}{" "}
-            reviews
+            <i class="fas fa-star"></i> {rating}
           </p>
-          {reviews.filter((review) => {
-            return review.User.id === sessionUser.id;
-          }).length === 0 ? (
-            <button
+
+           { !userOwnsSpot && !hasReview&& <button
               onClick={() => {
                 setShowModal(true);
               }}
               className="postReviewButton"
             >
               Post your review
-            </button>
-          ) : null}
-          {reviews.map((review) => {
+            </button>}
+
+          {reviews.map((review, i) => {
+            const isUsersReview = sessionUser.id === review.userId;
             return (
-              <div className="reviewItem" key={review.id}>
-                <div className="name">{review.User.firstName}</div>
+              <div className="reviewItem" key={i}>
+                {review &&<>
+                 <div className="name">{review.firstName}</div>
                 <div className="date">{review.createdAt.split("T")[0]}</div>
                 <div className="review">{review.review}</div>
+                {isUsersReview&&<button onClick={() => {
+                setShowDeleteModal(true);
+              }}>Delete</button>}
+                </>}
               </div>
             );
           })}
         </div>
       </div>
+      {showDeleteModal ? (
+        <DeleteReviewPopout spot={spot} setShowDeleteModal={setShowDeleteModal} />
+      ) : null}
       {showModal ? <PostReviewModal showModal={setShowModal} /> : null}
     </>
   );

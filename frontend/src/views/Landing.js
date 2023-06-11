@@ -19,8 +19,8 @@ const Landing = () => {
   return (
     <Suspense fallback={<Loading />}>
       <div className="GridContainer">
-        {spots.map((spot) => {
-          return <SpotPane key={spot.id} spot={spot} />;
+        {spots.map((spot, i) => {
+          return <SpotPane key={i} spot={spot} />;
         })}
       </div>
     </Suspense>

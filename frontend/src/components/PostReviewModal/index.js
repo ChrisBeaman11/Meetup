@@ -1,6 +1,6 @@
 import React from "react";
 import "./PostReviewModal.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { createNewReview } from "../../store/reviews";
@@ -8,7 +8,7 @@ import { createNewReview } from "../../store/reviews";
 export default function PostReviewModal(props) {
   let dispatch = useDispatch();
   let { spotId } = useParams();
-
+  const user = useSelector((s) => s.session.user)
   let showModal = props.showModal;
 
   let [review, setReview] = useState("");
@@ -84,7 +84,7 @@ export default function PostReviewModal(props) {
 
   const handleSubmit = () => {
     console.log(review, filledStars);
-    dispatch(createNewReview(spotId, review, filledStars));
+    dispatch(createNewReview(spotId, review, filledStars, user.firstName, user.id));
   };
 
   return (

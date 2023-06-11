@@ -9,18 +9,23 @@ const SpotForm = ({ spot, formType }) => {
   let dispatch = useDispatch();
 
   const [country, setCountry] = useState(spot?.country || "");
-  const [streetAddress, setStreetAddress] = useState(spot?.streetAddress || "");
+  const [streetAddress, setStreetAddress] = useState(spot?.address || "");
   const [city, setCity] = useState(spot?.city || "");
   const [state, setState] = useState(spot?.state || "");
   const [description, setDescription] = useState(spot?.description || "");
   const [name, setName] = useState(spot?.name || "");
   const [price, setPrice] = useState(spot?.price || "");
-  const [previewImages, setPreviewImages] = useState(spot?.previewImages || "");
-  const [isUpdate, _] = useState(spot != null);
+  const [previewImages, setPreviewImages] = useState("");
+  const [previewImages2, setPreviewImages2] = useState("");
+  const [previewImages3, setPreviewImages3] = useState("");
+  const [previewImages4, setPreviewImages4] = useState("");
+  const [previewImages5, setPreviewImages5] = useState("");
+
+  const isUpdate = spot!=null;
   const [inFlight, setInFlight] = useState(false);
 
   const [errors, setErrors] = useState({});
-
+  console.log("THOISTHE SPOT", spot);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(Object.keys(errors).length > 0)return;
@@ -29,21 +34,27 @@ const SpotForm = ({ spot, formType }) => {
     const newSpot = {
       ...spot,
       country,
-      streetAddress,
+      address: streetAddress,
       city,
       state,
       description,
       price,
-      name,
-      previewImages,
+      name
     };
+    const images =
+      [previewImages,
+      previewImages2,
+      previewImages3,
+      previewImages4,
+      previewImages5]
+
 
     if (isUpdate) {
       dispatch(updateSingleSpot(newSpot)).then(() =>
         history.push(`/spots/${spot.id}`)
       );
     } else {
-      dispatch(createSingleSpot(newSpot)).then((id) =>
+      dispatch(createSingleSpot(newSpot, images)).then((id) =>
         history.push(`/spots/${id}`)
       );
     }
@@ -69,8 +80,7 @@ const SpotForm = ({ spot, formType }) => {
     if (!name.length) errorObj.name = "Name is required";
     if (!price.length) errorObj.price = "Price is required";
 
-    if (!previewImages.length)
-      errorObj.previewImages = "Preview image is required";
+    if (!previewImages.length && !isUpdate) errorObj.previewImages = "Preview image 1 is required";
     for (let i = 0; i < previewImages.length; i++) {
       if (
         previewImages[i].indexOf(".png") !== -1 ||
@@ -94,6 +104,12 @@ const SpotForm = ({ spot, formType }) => {
   ]);
   console.log(errors);
   return (
+    <div>
+      <div className="headerStuff">
+    <h2>{isUpdate? 'Edit spot': 'Create a new Spot'}</h2>
+    <h3>Where's your place located?</h3>
+    <p>Guests will only get your exact address once they booked a reservation.</p>
+    </div>
     <form onSubmit={handleSubmit} className="createSpotForm">
       <div className="FormContainer">
         <h2>{formType}</h2>
@@ -109,7 +125,7 @@ const SpotForm = ({ spot, formType }) => {
         </label>
 
         <label>
-          StreetAddress {inFlight &&<div className="errors">{errors.streetAddress}</div>}
+          <p>StreetAddress</p> {inFlight &&<div className="errors">{errors.streetAddress}</div>}
           <input
             value={streetAddress}
             onChange={(e) => setStreetAddress(e.target.value)}
@@ -127,49 +143,78 @@ const SpotForm = ({ spot, formType }) => {
         </div>
 
         <label>
-          <p>Describe your place to guests</p>
+          <div className="descriptionStuff">
+          <h2>Describe your place to guests</h2>
+          <p className="descriptionText">Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</p>
           <textarea
-            placeholder="Description"
+            placeholder="Please write at least 30 characters"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
+          </div>
           {inFlight && <div className="errors">{errors.description}</div>}
         </label>
 
         <label>
-          <p>Name of spot</p>
-          <input value={name} onChange={(e) => setName(e.target.value)} />
+          <div className="titleStuff">
+          <h2>Create a title for your spot</h2>
+          <p>Catch guests' attention with a spot title that highlights waht makes your place special.</p>
+          <input placeholder = "Name of your spot" value={name} onChange={(e) => setName(e.target.value)} />
+          </div>
           {inFlight &&<div className="errors">{errors.name}</div>}
         </label>
 
         <label>
-          <p>Set a price for your spot</p>
-          <input
+          <div className="priceStuff">
+          <h2>Set a base price for your spot</h2>
+          <p>Competitive pricing can help your listing stand out and rank higher in search results</p>
+          <p>$ <span><input
             value={Number(price)}
             onChange={(e) => setPrice(e.target.value)}
-          />
+          /></span></p>
+          </div>
           {inFlight &&<div className="errors">{errors.price}</div>}
         </label>
 
-        <label>
-          <p>Preview Images</p>
-          <textarea
+        {!isUpdate && <label>
+          <div className="photoStuff">
+          <h2>Liven up your spot with photos</h2>
+          <p>Submit a link to at least one photo to publish your spot.</p>
+          <div className="previewImagesFields">
+          <input
+            placeholder="Preview Image 1"
+            type = "text"
             value={previewImages}
             onChange={(e) => setPreviewImages(e.target.value)}
           />
+          <input type="text" value={previewImages2}
+          placeholder="Preview Image 2"
+            onChange={(e) => setPreviewImages2(e.target.value)}/>
+          <input type="text" value={previewImages3}
+          placeholder="Preview Image 3"
+            onChange={(e) => setPreviewImages3(e.target.value)}/>
+          <input type="text" value={previewImages4}
+          placeholder="Preview Image 4"
+            onChange={(e) => setPreviewImages4(e.target.value)}/>
+          <input type="text" value={previewImages5}
+          placeholder="Preview Image 5"
+            onChange={(e) => setPreviewImages5(e.target.value)}/>
+            </div>
+            </div>
           {inFlight &&<div className="errors">{errors.previewImages}</div>}
-        </label>
+        </label>}
         <button
           // disabled={Object.keys(errors).length > 0}
           className="submitButton"
           type="submit"
           onClick={() => setInFlight(true)}
         >
-          Create Spot
+          {isUpdate? 'Edit Spot': 'Create Spot'}
           {formType}
         </button>
       </div>
     </form>
+    </div>
   );
 };
 
