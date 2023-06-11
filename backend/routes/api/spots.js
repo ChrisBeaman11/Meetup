@@ -47,7 +47,7 @@ router.get("/", async (req, res) => {
     }
     arr.push(pojo);
   }
-  console.log("THIS IS MY ARR", arr)
+  // console.log("THIS IS MY ARR", arr)
   return res.json({ Spots: arr, page, size });
 });
 
@@ -346,53 +346,58 @@ router.get("/:spotId/reviews", async (req, res) => {
   }
 });
 router.post("/:spotId/reviews", requireAuth, async (req, res) => {
-  let spotId = req.params.spotId;
-  let userId = req.user.id;
-  let reviewExists = await Review.findOne({
-    where: {
-      spotId: spotId,
-      userId: userId,
-    },
-  });
-
-  if (reviewExists) {
-    res.status(500);
-    return res.json({
-      message: "User already has a review for this spot",
+  try {
+    let spotId = req.params.spotId;
+    let userId = req.user.id;
+    let reviewExists = await Review.findOne({
+      where: {
+        spotId: spotId,
+        userId: userId,
+      },
     });
-  }
 
-  let errors = {};
-  const { review, stars } = req.body;
-  let spot = await Spot.findByPk(spotId);
-  if (spot) {
-    const newReview = await Review.create({
-      userId: userId,
-      spotId: spotId,
-      review,
-      stars,
-    });
-    if (!req.body.review) {
-      errors.review = "Review text is required";
-    }
-    if (req.body.stars > 5 || req.body.stars < 1 || !req.body.stars) {
-      errors.stars = "Stars must be an integer from 1 to 5";
-    }
-    if (!Object.keys(errors).length) {
-      res.status(201);
-      return res.json(newReview);
-    } else {
-      res.status(400);
+    if (reviewExists) {
+      res.status(500);
       return res.json({
-        message: "Bad Request",
-        errors,
+        message: "User already has a review for this spot",
       });
     }
-  } else {
-    res.status(404);
-    return res.json({
-      message: "Spot couldn't be found",
-    });
+
+    let errors = {};
+    const { review, stars } = req.body;
+    let spot = await Spot.findByPk(spotId);
+    if (spot) {
+      const newReview = await Review.create({
+        userId: userId,
+        spotId: spotId,
+        review,
+        stars,
+      });
+      if (!req.body.review) {
+        errors.review = "Review text is required";
+      }
+      if (req.body.stars > 5 || req.body.stars < 1 || !req.body.stars) {
+        errors.stars = "Stars must be an integer from 1 to 5";
+      }
+      if (!Object.keys(errors).length) {
+        res.status(201);
+        return res.json(newReview);
+      } else {
+        res.status(400);
+        return res.json({
+          message: "Bad Request",
+          errors,
+        });
+      }
+    } else {
+      res.status(404);
+      return res.json({
+        message: "Spot couldn't be found",
+      });
+    }
+  } catch (e) {
+    res.status(400);
+    return res.json({ error: e });
   }
 });
 
