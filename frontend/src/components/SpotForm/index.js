@@ -17,13 +17,13 @@ const SpotForm = ({ spot, formType }) => {
   const [price, setPrice] = useState(spot?.price || "");
   const [previewImages, setPreviewImages] = useState(spot?.previewImages || "");
   const [isUpdate, _] = useState(spot != null);
-
-  // const [inFlight, setInFlight] = useState(false);
+  const [inFlight, setInFlight] = useState(false);
 
   const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(Object.keys(errors).length > 0)return;
     setErrors({});
     // setInFlight(true);
     const newSpot = {
@@ -99,7 +99,7 @@ const SpotForm = ({ spot, formType }) => {
         <h2>{formType}</h2>
         <label>
           <div>
-            Country <div className="errors">{errors.country}</div>
+            Country {inFlight &&<div className="errors">{errors.country}</div>}
           </div>
           <input
             type="text"
@@ -109,7 +109,7 @@ const SpotForm = ({ spot, formType }) => {
         </label>
 
         <label>
-          StreetAddress <div className="errors">{errors.streetAddress}</div>
+          StreetAddress {inFlight &&<div className="errors">{errors.streetAddress}</div>}
           <input
             value={streetAddress}
             onChange={(e) => setStreetAddress(e.target.value)}
@@ -117,11 +117,11 @@ const SpotForm = ({ spot, formType }) => {
         </label>
         <div className="subFormContainer">
           <label>
-            City <div className="errors">{errors.city}</div>
+            City {inFlight &&<div className="errors">{errors.city}</div>}
             <input value={city} onChange={(e) => setCity(e.target.value)} />
           </label>
           <label>
-            State <div className="errors">{errors.state}</div>
+            State {inFlight &&<div className="errors">{errors.state}</div>}
             <input value={state} onChange={(e) => setState(e.target.value)} />
           </label>
         </div>
@@ -133,13 +133,13 @@ const SpotForm = ({ spot, formType }) => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-          <div className="errors">{errors.description}</div>
+          {inFlight && <div className="errors">{errors.description}</div>}
         </label>
 
         <label>
           <p>Name of spot</p>
           <input value={name} onChange={(e) => setName(e.target.value)} />
-          <div className="errors">{errors.name}</div>
+          {inFlight &&<div className="errors">{errors.name}</div>}
         </label>
 
         <label>
@@ -148,7 +148,7 @@ const SpotForm = ({ spot, formType }) => {
             value={Number(price)}
             onChange={(e) => setPrice(e.target.value)}
           />
-          <div className="errors">{errors.price}</div>
+          {inFlight &&<div className="errors">{errors.price}</div>}
         </label>
 
         <label>
@@ -157,12 +157,13 @@ const SpotForm = ({ spot, formType }) => {
             value={previewImages}
             onChange={(e) => setPreviewImages(e.target.value)}
           />
-          <div className="errors">{errors.previewImages}</div>
+          {inFlight &&<div className="errors">{errors.previewImages}</div>}
         </label>
         <button
-          disabled={Object.keys(errors).length > 0}
+          // disabled={Object.keys(errors).length > 0}
           className="submitButton"
           type="submit"
+          onClick={() => setInFlight(true)}
         >
           Create Spot
           {formType}

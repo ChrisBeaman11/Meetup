@@ -9,18 +9,24 @@ export default function SpotPane(props) {
   let spot = props.spot;
   let id = spot.id;
   return (
-    <div className="paneContainer">
+    <div className="paneContainer"
+    onClick={() => {
+      history.push(`/spots/${id}`);
+    }}
+    title={spot.name}
+    >
       <img
       className = "paneImage"
-        onClick={() => {
-          history.push(`/spots/${id}`);
-        }}
+
         src={`https://l.icdbcdn.com/oh/60907f50-c4d6-4044-9422-b536a7fdabfa.jpg?w=2080`}
         alt="photo unavailable"
       />
       <div className="firstLinePane">
-        <p>{`${spot.city}, ${spot.state}`}</p>
-        <p>{spot.avgRating}</p>
+        <div className="location">
+        <p>{spot.city},</p>
+        <p>{spot.state}</p>
+        </div>
+        <p><i class="fas fa-star"></i> {spot.avgRating??'New'}</p>
       </div>
       <p className="price">{`$${spot.price}`} <span className="spanPrice">night</span> </p>
       {props.footer ? (

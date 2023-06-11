@@ -6,6 +6,7 @@ import CreateSpotButton from "../components/SpotForm/CreateSpotButton";
 import { fetchAllReviewsBySpot } from "../store/reviews";
 import PostReviewModal from "../components/PostReviewModal";
 import "./Spot.css";
+import InfoBox from "../components/InfoBoxSpotDetail";
 export default function Spot(props) {
   let { spotId } = useParams();
   const dispatch = useDispatch();
@@ -29,15 +30,26 @@ export default function Spot(props) {
     <>
       <div className="paneContainer">
         <h2>{spot.name}</h2>
-        <h3>{`${spot.city}, ${spot.state}, ${spot.country}`}</h3>
+        <div className="locationDiv">
+        <h3>{spot.city},</h3>
+        <h3>{spot.state},</h3>
+        <h3>{spot.country}</h3>
+        </div>
         <img
           src="https://l.icdbcdn.com/oh/60907f50-c4d6-4044-9422-b536a7fdabfa.jpg?w=2080"
           alt="PHOTO UNAVAILABLE"
         />
+        <div className="ownerInfoBoxDiv">
+          <div className="ownerDescriptionDiv">
         {spot.Owner && (
           <h2>{`Hosted by ${spot.Owner.firstName} ${spot.Owner.lastName}`}</h2>
         )}
         <p>{spot.description}</p>
+        </div>
+        <div className="infoBox">
+        <InfoBox/>
+        </div>
+        </div>
         <hr />
         <div className="ReviewContainer">
           <p>
@@ -59,7 +71,7 @@ export default function Spot(props) {
             return (
               <div className="reviewItem" key={key}>
                 <div className="name">{review.User.firstName}</div>
-                <div className="date">{review.createdAt}</div>
+                <div className="date">{review.createdAt.split("T")[0]}</div>
                 <div className="review">{review.review}</div>
               </div>
             );

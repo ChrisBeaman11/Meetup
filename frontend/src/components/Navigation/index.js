@@ -18,12 +18,12 @@ function Navigation({ isLoaded }) {
 
       <h1 onClick = {() => history.push('/')}className = "logo">airbnb</h1> <h1/>
     <div className="SubNav">
-      <CreateSpotButton/>
+      {sessionUser && <CreateSpotButton/>}
       <button className = "menu"
         onClick={() => {
           setIsClicked(!isClicked);
         }}
-      />
+      >User Menu</button>
       {isClicked && (
         <ul>
           <li>

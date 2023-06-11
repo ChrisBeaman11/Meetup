@@ -7,6 +7,6 @@ let handleClick  = () =>{
     history.push('/spots/new')
 }
     return(
-        <h2 className = "createSpot" style = {{'color': "turquoise", 'font-size': '20px'}}onClick={handleClick}>Create New Spot</h2>
+        <h2 className = "createSpot" style = {{'color': "turquoise", 'fontSize': '20px'}}onClick={handleClick}>Create New Spot</h2>
     )
 }
