@@ -35,7 +35,6 @@ router.get("/", async (req, res) => {
     pojo.avgRating = avgStars;
     const previewImg = await SpotImage.findAll({
       where: {
-        preview: true,
         spotId: spot.id,
       },
     });
