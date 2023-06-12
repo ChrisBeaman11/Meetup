@@ -13,7 +13,7 @@ export default function DeleteReviewPopout(props) {
       <p>Are you sure you want to remove this review?</p>
       <button className="yesButton" onClick={async () => {
         props.setShowDeleteModal(null);
-        await dispatch(deleteSingleReview(props.review.id));
+        await dispatch(deleteSingleReview(props.review.id, props.spotId));
             }}>Yes (Delete review)</button>
       <button className="noButton" onClick={()=>{ props.setShowDeleteModal(null)}}>No (Keep review)</button>
     </div>

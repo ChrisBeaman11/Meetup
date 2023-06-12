@@ -6,7 +6,17 @@ export const RECEIVE_NEW_SPOT = "spots/RECEIVE_NEW_SPOT";
 export const UPDATE_SPOT = "spots/UPDATE_SPOT";
 export const REMOVE_SPOT = "spots/REMOVE_SPOT";
 export const LOAD_ALL_REVIEWS_BY_SPOT = "reviews/LOAD_ALL_REVIEWS_BY_SPOT";
+export const UPDATE_REVIEW = "spots/UPDATE_REVIEW";
+export const UPDATE_REVIEW_POST = "spots/UPDATE_REVIEW_POST";
 
+export const updateReview = (avgRating) =>({
+  type: UPDATE_REVIEW,
+  avgRating
+})
+export const updateReviewPost = (avgRating) =>({
+  type: UPDATE_REVIEW_POST,
+  avgRating
+})
 export const loadAllReviews = (reviews) => ({
   type: LOAD_ALL_REVIEWS_BY_SPOT,
   reviews,
@@ -147,7 +157,10 @@ const spotsReducer = (
       return { ...state, allSpots: all };
     case REMOVE_SPOT:
       return {...state, allSpots: {...state.allSpots, [action.spotId]: null}};
-
+      case UPDATE_REVIEW:
+      return {allSpots: state.allSpots, selectedSpot: {...state.selectedSpot, numReviews: state.selectedSpot.numReviews-1, avgStarRating: action.avgRating}}
+      case UPDATE_REVIEW_POST:
+      return {allSpots: state.allSpots, selectedSpot: {...state.selectedSpot, numReviews: state.selectedSpot.numReviews+1, avgStarRating: action.avgRating}}
     default:
       return state;
   }

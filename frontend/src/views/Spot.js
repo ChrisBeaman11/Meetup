@@ -40,7 +40,7 @@ export default function Spot(props) {
 
   if (!spot) return null;
   const hasReview = reviews?.find((r) => r.User?.id===sessionUser?.id)
-  const userOwnsSpot = sessionUser.id === spot.ownerId;
+  const userOwnsSpot = sessionUser?.id === spot.ownerId;
   let reviewText;
     if(spot.numReviews===1){
         reviewText = "review"
@@ -84,17 +84,17 @@ export default function Spot(props) {
         </div>
         <hr />
         <div className="ReviewContainer">
-          <p>
+          <p className="ratingPTag">
             <i class="fas fa-star"></i> {rating}
           </p>
 
-           { !userOwnsSpot && !hasReview&& <button
+           { sessionUser && !userOwnsSpot && !hasReview&& <button
               onClick={() => {
                 setShowModal(true);
               }}
               className="postReviewButton"
             >
-              Post your review
+             {reviews.length > 0 ? `Post your review`: 'Be the first to post a review!'}
             </button>}
 
           {reviews.sort((a, b) => {
@@ -102,7 +102,7 @@ export default function Spot(props) {
           let dateB = new Date(b.createdAt);
           return dateB - dateA;
         }).map((review, i) => {
-            const isUsersReview = sessionUser.id === review.User.id;
+            const isUsersReview = sessionUser?.id === review.User.id;
             return (
               <div className="reviewItem" key={i}>
                 {review &&<>
@@ -110,6 +110,7 @@ export default function Spot(props) {
                 <div className="date">{getMonth(review.createdAt) + ' ' + review.createdAt.split('T').join('').split('-')[0]}</div>
                 <div className="review">{review.review}</div>
                 {isUsersReview&&<button className="deleteReviewButton"onClick={() => {
+
                 setShowDeleteModal(review);
               }}>Delete</button>}
                 </>}
@@ -119,7 +120,7 @@ export default function Spot(props) {
         </div>
       </div>
       {showDeleteModal ? (
-        <DeleteReviewPopout review={showDeleteModal} setShowDeleteModal={setShowDeleteModal} />
+        <DeleteReviewPopout spotId={spot.id}review={showDeleteModal} setShowDeleteModal={setShowDeleteModal} />
       ) : null}
       {showModal ? <PostReviewModal showModal={setShowModal} /> : null}
     </>

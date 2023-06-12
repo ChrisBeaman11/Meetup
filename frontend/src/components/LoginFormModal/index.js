@@ -13,10 +13,9 @@ function LoginFormModal() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
- const demoSignIn = () => {
-  setCredential('Demo-lition')
-  setPassword('password')
-  return dispatch(sessionActions.login({credential, password}));
+ const demoSignIn = (e) => {
+    e.preventDefault();
+   dispatch(sessionActions.login({credential: 'Demo-lition', password: 'password'})).then(closeModal);
  }
 
   const handleSubmit = (e) => {
