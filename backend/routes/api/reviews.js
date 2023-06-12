@@ -133,7 +133,7 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
 })
 router.delete('/:reviewId', requireAuth, async (req, res) => {
     let reviewId = req.params.reviewId;
-    let review = await Spot.findByPk(reviewId);
+    let review = await Review.findByPk(reviewId);
     if(review){
         await review.destroy();
         return res.json({
