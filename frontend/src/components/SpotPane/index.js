@@ -10,7 +10,6 @@ export default function SpotPane(props) {
   let spot = props.spot;
   let dispatch = useDispatch();
   let [showDeleteModal, setShowDeleteModal] = useState(false);
-  console.log("SPOT HERE", spot);
   const goToEditForm = () => {
     return history.push(`/spots/${spot.id}/edit`);
   };
@@ -48,7 +47,6 @@ export default function SpotPane(props) {
           <div style={{ display: "flex" }}>
             <button
               onClick={() => {
-                console.log("here");
                 history.push(`/spots/${spot.id}/edit`);
               }}
             >

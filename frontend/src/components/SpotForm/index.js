@@ -102,7 +102,6 @@ const SpotForm = ({ spot, formType }) => {
     price,
     previewImages,
   ]);
-  console.log(errors);
   return (
     <div>
       <div className="headerStuff">

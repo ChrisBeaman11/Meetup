@@ -48,7 +48,6 @@ export const createNewReview =
       dispatch(postNewReview(reviews));
       const spot = await (await csrfFetch(`/api/spots/${spotId}`)).json();
       if (spot) {
-        console.log("THIS IS MY SPOT", spot);
         dispatch(updateReviewPost(spot.avgStarRating));
       }
     } catch (err) {
@@ -65,7 +64,6 @@ export const deleteSingleReview = (id, spotId) => async (dispatch) => {
       dispatch(removeReview(id));
       const spot = await (await csrfFetch(`/api/spots/${spotId}`)).json();
       if (spot) {
-        console.log("THIS IS MY SPOT", spot);
         dispatch(updateReview(spot.avgStarRating));
       }
     }

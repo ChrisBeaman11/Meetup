@@ -6,7 +6,7 @@ import './DeleteReviewPopout.css';
 
 export default function DeleteReviewPopout(props) {
     let dispatch = useDispatch();
-    console.log("THIS IS PROPS REVIEW", props.review);
+   
   return (
     <div className="deleteReviewModal">
       <h2>Confirm Delete</h2>
