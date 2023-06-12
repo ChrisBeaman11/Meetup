@@ -22,21 +22,10 @@ function Navigation({ isLoaded }) {
       {
 
           isLoaded && (
-            <ul>
-            <li>
-            <NavLink exact to="/">
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink exact to="/spots/current">
-              Manage Spots
-            </NavLink>
-          </li>
-            <li>
+            
               <ProfileButton user={sessionUser} />
-            </li>
-            </ul>
+
+
           )
       }
       </div>

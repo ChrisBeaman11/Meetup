@@ -83,7 +83,6 @@ export default function PostReviewModal(props) {
   ]);
 
   const handleSubmit = () => {
-    console.log(review, filledStars);
     dispatch(createNewReview(spotId, review, filledStars, user.firstName, user.id));
   };
 
@@ -113,7 +112,7 @@ export default function PostReviewModal(props) {
         </div>
         <div>
           <button
-            disabled={review.length<10}
+            disabled={review.length<10 || filledStars<1}
             className="submitButton"
             onClick={(e) => {
               handleSubmit();
