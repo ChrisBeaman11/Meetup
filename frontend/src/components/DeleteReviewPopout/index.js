@@ -5,17 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 import './DeleteReviewPopout.css';
 
 export default function DeleteReviewPopout(props) {
-    let history = useHistory();
     let dispatch = useDispatch();
+    console.log("THIS IS PROPS REVIEW", props.review);
   return (
     <div className="deleteReviewModal">
       <h2>Confirm Delete</h2>
       <p>Are you sure you want to remove this review?</p>
       <button className="yesButton" onClick={async () => {
-              await dispatch(deleteSingleReview(props.review.id));
-              history.push("/");
+        props.setShowDeleteModal(null);
+        await dispatch(deleteSingleReview(props.review.id));
             }}>Yes (Delete review)</button>
-      <button className="noButton" onClick={()=>{ props.setShowDeleteModal(false)}}>No (Keep review)</button>
+      <button className="noButton" onClick={()=>{ props.setShowDeleteModal(null)}}>No (Keep review)</button>
     </div>
   );
 }

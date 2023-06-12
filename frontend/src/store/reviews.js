@@ -41,8 +41,10 @@ export const createNewReview = (spotId, review, stars, firstName, userId) => asy
       throw new Error("Failed on createNewReview");
     }
     const reviews = await response.json();
-    console.log("DEEZE REVIEWS", reviews);
-    dispatch(postNewReview({firstName, createdAt: reviews.createdAt, review: reviews.review, userId}));
+    // console.log("DEEZE REVIEWS", reviews);
+    reviews.User = {firstName, id: userId}
+
+    dispatch(postNewReview(reviews));
   } catch (err) {
     console.log("Failed on createNewReview:", err);
   }
@@ -62,9 +64,11 @@ export const deleteSingleReview = (id) => async (dispatch) => {
 const reviewsReducer = (state = { reviews: [] }, action) => {
   switch (action.type) {
     case LOAD_ALL_REVIEWS_BY_SPOT:
-      return { ...state, reviews: action.reviews.Reviews };
+      return { reviews: action.reviews.Reviews };
     case POST_NEW_REVIEW:
-      return { ...state, reviews: [...state.reviews, action.reviews] };
+      return { reviews: [...state.reviews, action.reviews] };
+      case REMOVE_REVIEW:
+        return {reviews: state.reviews.filter((r) => r.id !== action.reviewId)};
     default:
       return state;
   }

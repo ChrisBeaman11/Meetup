@@ -19,14 +19,11 @@ function Navigation({ isLoaded }) {
       <h1 onClick = {() => history.push('/')}className = "logo">airbnb</h1> <h1/>
     <div className="SubNav">
       {sessionUser && <CreateSpotButton/>}
-      <button className = "menu"
-        onClick={() => {
-          setIsClicked(!isClicked);
-        }}
-      >User Menu</button>
-      {isClicked && (
-        <ul>
-          <li>
+      {
+
+          isLoaded && (
+            <ul>
+            <li>
             <NavLink exact to="/">
               Home
             </NavLink>
@@ -36,13 +33,12 @@ function Navigation({ isLoaded }) {
               Manage Spots
             </NavLink>
           </li>
-          {isLoaded && (
             <li>
               <ProfileButton user={sessionUser} />
             </li>
-          )}
-        </ul>
-      )}
+            </ul>
+          )
+      }
       </div>
     </div>
   );

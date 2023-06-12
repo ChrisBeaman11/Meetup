@@ -8,12 +8,21 @@ import PostReviewModal from "../components/PostReviewModal";
 import "./Spot.css";
 import InfoBox from "../components/InfoBoxSpotDetail";
 import DeleteReviewPopout from "../components/DeleteReviewPopout";
+
+const getMonth = (date) => {
+  let vari = new Date(date);
+  return vari.toLocaleString('default', {month: 'long'});
+}
+
+
+
+
 export default function Spot(props) {
   let { spotId } = useParams();
   const dispatch = useDispatch();
 
   let [showModal, setShowModal] = useState(false);
-  let [showDeleteModal, setShowDeleteModal] = useState(false);
+  let [showDeleteModal, setShowDeleteModal] = useState(null);
   // let [showLeaveReview, setShowLeaveReview] = useState(false)
 
   const spot = useSelector((state) => state.spots.selectedSpot);
@@ -28,11 +37,18 @@ export default function Spot(props) {
     dispatch(fetchSingleSpot(spotId));
     dispatch(fetchAllReviewsBySpot(spotId));
   }, [spotId]);
-  console.log("MY SPOT", spot);
+
   if (!spot) return null;
   const hasReview = reviews?.find((r) => r.User?.id===sessionUser?.id)
   const userOwnsSpot = sessionUser.id === spot.ownerId;
-  let rating = spot.avgStarRating?`${spot.avgStarRating?.toFixed(2)} · ${spot.numReviews} reviews`:"New";
+  let reviewText;
+    if(spot.numReviews===1){
+        reviewText = "review"
+    }
+    else{
+        reviewText = "reviews";
+    }
+  let rating = spot.avgStarRating?`${spot.avgStarRating?.toFixed(2)} · ${spot.numReviews} ${reviewText}`:"New";
   return (
     <>
       <div className="paneContainer">
@@ -81,16 +97,20 @@ export default function Spot(props) {
               Post your review
             </button>}
 
-          {reviews.map((review, i) => {
-            const isUsersReview = sessionUser.id === review.userId;
+          {reviews.sort((a, b) => {
+          let dateA = new Date(a.createdAt);
+          let dateB = new Date(b.createdAt);
+          return dateB - dateA;
+        }).map((review, i) => {
+            const isUsersReview = sessionUser.id === review.User.id;
             return (
               <div className="reviewItem" key={i}>
                 {review &&<>
-                 <div className="name">{review.firstName}</div>
-                <div className="date">{review.createdAt.split("T")[0]}</div>
+                <div className="name">{review.User.firstName}</div>
+                <div className="date">{getMonth(review.createdAt) + ' ' + review.createdAt.split('T').join('').split('-')[0]}</div>
                 <div className="review">{review.review}</div>
                 {isUsersReview&&<button onClick={() => {
-                setShowDeleteModal(true);
+                setShowDeleteModal(review);
               }}>Delete</button>}
                 </>}
               </div>
@@ -99,7 +119,7 @@ export default function Spot(props) {
         </div>
       </div>
       {showDeleteModal ? (
-        <DeleteReviewPopout spot={spot} setShowDeleteModal={setShowDeleteModal} />
+        <DeleteReviewPopout review={showDeleteModal} setShowDeleteModal={setShowDeleteModal} />
       ) : null}
       {showModal ? <PostReviewModal showModal={setShowModal} /> : null}
     </>
