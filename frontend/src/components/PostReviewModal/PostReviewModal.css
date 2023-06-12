@@ -1,6 +1,6 @@
 .submitButton{
-    color: darkgray;
-    background-color: lightgray;
+    color: white;
+    background-color: #FF5A5F;
     box-shadow: 2px 2px;
     width: 200px;
 }
@@ -26,4 +26,9 @@
     flex-direction: column;
     align-items: center;
     gap: 30px;
+}
+
+.submitButton[disabled]{
+    background-color: lightgray;
+    color: gray;
 }

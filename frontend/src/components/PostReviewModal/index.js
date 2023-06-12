@@ -113,6 +113,7 @@ export default function PostReviewModal(props) {
         </div>
         <div>
           <button
+            disabled={review.length<10}
             className="submitButton"
             onClick={(e) => {
               handleSubmit();

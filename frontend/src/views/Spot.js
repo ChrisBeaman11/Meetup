@@ -109,7 +109,7 @@ export default function Spot(props) {
                 <div className="name">{review.User.firstName}</div>
                 <div className="date">{getMonth(review.createdAt) + ' ' + review.createdAt.split('T').join('').split('-')[0]}</div>
                 <div className="review">{review.review}</div>
-                {isUsersReview&&<button onClick={() => {
+                {isUsersReview&&<button className="deleteReviewButton"onClick={() => {
                 setShowDeleteModal(review);
               }}>Delete</button>}
                 </>}

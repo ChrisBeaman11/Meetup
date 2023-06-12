@@ -5,12 +5,19 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
 
+
+
 function LoginFormModal() {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
+ const demoSignIn = () => {
+  setCredential('Demo-lition')
+  setPassword('password')
+  return dispatch(sessionActions.login({credential, password}));
+ }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,31 +34,31 @@ function LoginFormModal() {
 
   return (
     <>
+    <div className="loginModal">
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username or Email
+      <form className= "loginForm"onSubmit={handleSubmit}>
+
           <input
+          placeholder="Username or Email"
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Password
           <input
+          placeholder="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
         {errors.credential && (
           <p>{errors.credential}</p>
         )}
-        <button disabled={credential.length<4 || password<6}type="submit">Log In</button>
+        <button className="loginButton" disabled={credential.length<4 || password.length<6}type="submit">Log In</button>
+        <button onClick={demoSignIn} className="demoUserButton">Continue as demo user</button>
       </form>
+      </div>
     </>
   );
 }
