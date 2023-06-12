@@ -37,10 +37,11 @@ function SignupFormModal() {
         });
     }
     return setErrors({
+      email: "invalid email",
       confirmPassword: "Confirm Password field must be the same as the Password field"
     });
   };
-
+console.log("these are my errors", errors);
   return (
     <>
       <div className="signupModal">
