@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import SpotPane from "../components/SpotPane";
 import { fetchAllSpots } from "../store/spots";
 import Loading from "../components/Loading";
-import { Suspense, useState, useContext } from "react";
+import { Suspense } from "react";
 import "./Landing.css";
 
 const Landing = () => {
-  const [calledOnce, setCalledOnce] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
