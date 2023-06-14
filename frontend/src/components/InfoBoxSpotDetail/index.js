@@ -15,7 +15,7 @@ export default function InfoBox(){
             <div className="box">
                 <div className="myFlex">
                 <p>${spot.price} night</p>
-                <p><i class="fas fa-star"></i> {rating}</p>
+                <p><i className="fas fa-star"></i> {rating}</p>
                 </div>
                 <button onClick={() => alert("Feature coming soon")} className = "reserveButton">Reserve</button>
             </div>
