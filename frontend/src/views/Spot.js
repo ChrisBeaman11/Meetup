@@ -76,7 +76,7 @@ export default function Spot(props) {
             {spot.Owner && (
               <h2>{`Hosted by ${spot.Owner.firstName} ${spot.Owner.lastName}`}</h2>
             )}
-            <p>{spot.description}</p>
+            <p className="descriptionTag">{spot.description}</p>
           </div>
           <div className="infoBox">
             <InfoBox />
