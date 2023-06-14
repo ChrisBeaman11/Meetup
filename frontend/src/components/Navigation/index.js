@@ -1,22 +1,29 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import CreateSpotButton from "../SpotForm/CreateSpotButton";
 import { useHistory } from "react-router-dom";
-import ManageSpots from "../../views/ManageSpots";
+import { useLocation } from "react-router-dom";
 
 function Navigation({ isLoaded }) {
+  let {pathname} = useLocation();
+  const [changeStyle, setChangeStyle] = useState(!isNaN(pathname[pathname.length-1]));
   let history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
+  useEffect(()=>{
+    if(!isNaN(pathname[pathname.length-1])){
+      setChangeStyle(true)
+    }
+    else{
+      setChangeStyle(false)
+    }
 
-  const [isClicked, setIsClicked] = useState(false);
-
+  }, [pathname])
   return (
-    <div className="NavContainer">
+    <div className={changeStyle? 'squishedNavCont': 'NavContainer'}>
 
-      <h1 onClick = {() => history.push('/')}className = "logo">airbnb</h1> <h1/>
+      <h1 onClick = {() => history.push('/')}className = "logo">airbnb</h1>
     <div className="SubNav">
       {sessionUser && <CreateSpotButton/>}
       {
