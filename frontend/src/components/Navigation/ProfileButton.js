@@ -14,8 +14,7 @@ function ProfileButton({ user }) {
   const ulRef = useRef();
 
   const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
+    setShowMenu(!showMenu);
   };
 
   useEffect(() => {
@@ -44,11 +43,11 @@ function ProfileButton({ user }) {
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
-    <>
+    <div ref={ulRef}>
       <button className="profButton" onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
-      {showMenu &&<ul className={ulClassName} ref={ulRef}>
+      {showMenu &&<ul className={ulClassName}>
         {user ? (
           <>
             <li>Hello, {user.firstName}</li>
@@ -77,7 +76,7 @@ function ProfileButton({ user }) {
           </>
         )}
       </ul>}
-    </>
+    </div>
   );
 }
 
