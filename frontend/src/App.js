@@ -8,7 +8,7 @@ import Spot from "./views/Spot";
 import CreateSpot from "./views/CreateSpot";
 import UpdateSpot from "./views/UpdateSpot";
 import ManageSpots from "./views/ManageSpots";
-
+import Footer from "./components/Footer";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -37,6 +37,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer/>
     </>
   );
 }

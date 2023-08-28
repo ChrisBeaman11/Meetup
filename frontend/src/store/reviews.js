@@ -1,5 +1,5 @@
 import { csrfFetch } from "./csrf";
-import { updateReview, updateReviewPost } from "./spots";
+import { UPDATE_REVIEW, updateReview, updateReviewPost } from "./spots";
 
 export const LOAD_ALL_REVIEWS_BY_SPOT = "reviews/LOAD_ALL_REVIEWS_BY_SPOT";
 export const POST_NEW_REVIEW = "reviews/POST_NEW_REVIEW";

@@ -1,3 +1,62 @@
-.profButton{
-    width: 80px;
-}
+/* ProfileButton.css */
+.profile-dropdown {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 1;
+    min-width: 160px;
+    /* Adjusted position */
+    transform: translateX(-2em);
+  }
+
+  .profile-dropdown.hidden {
+    display: none;
+  }
+
+  .profButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+  }
+
+  .profButton i {
+    transition: color 0.3s ease;
+  }
+
+  .profButton:hover i {
+    color: #ff5a5f;
+  }
+
+  .profile-dropdown li {
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+    list-style-type: none;
+    margin: 0;
+  }
+
+  .profile-dropdown li:last-child {
+    border-bottom: none;
+  }
+
+  .profile-dropdown a,
+  .profile-dropdown button {
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .profile-dropdown a:hover,
+  .profile-dropdown button:hover {
+    color: #ff5a5f;
+  }
+

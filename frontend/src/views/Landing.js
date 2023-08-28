@@ -17,11 +17,19 @@ const Landing = () => {
 
   return (
     <Suspense fallback={<Loading />}>
-      <div className="GridContainer">
+      <section className="hero">
+        <h1>Find Your Perfect Getaway</h1>
+        <p>Explore unique homes and experiences all over the world.</p>
+      </section>
+      <section className="search">
+        {/* Search form can be added here */}
+      </section>
+      <div className="GridContainer results">
         {spots.map((spot, i) => {
           return <SpotPane key={i} spot={spot} />;
         })}
       </div>
+      
     </Suspense>
   );
 };

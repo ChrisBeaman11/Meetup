@@ -21,9 +21,9 @@ function Navigation({ isLoaded }) {
 
   }, [pathname])
   return (
-    <div className={changeStyle? 'squishedNavCont': 'NavContainer'}>
+    <div className={changeStyle? 'squishedNavCont': 'squishedNavCont'}>
 
-      <h1 onClick = {() => history.push('/')}className = "logo">airbnb</h1>
+      <h1 onClick = {() => history.push('/')}className = "logo">staybnb</h1>
     <div className="SubNav">
       {sessionUser && <CreateSpotButton/>}
       {
