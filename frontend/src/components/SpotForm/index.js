@@ -25,7 +25,6 @@ const SpotForm = ({ spot, formType }) => {
   const [inFlight, setInFlight] = useState(false);
 
   const [errors, setErrors] = useState({});
-  console.log("THOISTHE SPOT", spot);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(Object.keys(errors).length > 0)return;

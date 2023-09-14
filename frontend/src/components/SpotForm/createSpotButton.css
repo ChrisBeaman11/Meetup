@@ -1,4 +1,11 @@
 
 .createSpot:hover{
     cursor: pointer;
+    color: black;
+    font-size: bolder;
+    text-decoration: underline;
+}
+.createSpot{
+    color: lightgray;
+    font-size: 1.2em;
 }

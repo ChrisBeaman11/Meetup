@@ -1,8 +1,11 @@
+// frontend/src/components/LoginFormModal/index.js
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
+
+
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -10,11 +13,10 @@ function LoginFormModal() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
-
-  const demoSignIn = (e) => {
+ const demoSignIn = (e) => {
     e.preventDefault();
-    dispatch(sessionActions.login({ credential: "Demo-lition", password: "password" })).then(closeModal);
-  };
+   dispatch(sessionActions.login({credential: 'Demo-lition', password: 'password'})).then(closeModal);
+ }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,36 +33,30 @@ function LoginFormModal() {
 
   return (
     <>
-      <div className="loginModal">
-        <h1 className="loginHeader">Log In</h1>
-        <p className="loginSubheader">Welcome back! Log in to continue.</p>
-        <form className="loginForm" onSubmit={handleSubmit}>
+    <div className="loginModal">
+      <h1>Log In</h1>
+      <form className= "loginForm"onSubmit={handleSubmit}>
+
           <input
-            placeholder="Username or Email"
+          placeholder="Username or Email"
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
           />
           <input
-            placeholder="Password"
+          placeholder="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          {errors.credential && <p className="errors">{errors.credential}</p>}
-          <button
-            className="loginButton"
-            disabled={credential.length < 4 || password.length < 6}
-            type="submit"
-          >
-            Log In
-          </button>
-          <button onClick={demoSignIn} className="demoUserButton">
-            Continue as demo user
-          </button>
-        </form>
+        {errors.credential && (
+          <p>{errors.credential}</p>
+        )}
+        <button className="loginButton" disabled={credential.length<4 || password.length<6}type="submit">Log In</button>
+        <button onClick={demoSignIn} className="demoUserButton">Continue as demo user</button>
+      </form>
       </div>
     </>
   );

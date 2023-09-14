@@ -14,12 +14,12 @@ export default function SpotPane(props) {
       <div>
         <div
           className="paneContainer"
-          onClick={() => {
-            history.push(`/spots/${id}`);
-          }}
           title={spot.name}
         >
           <img
+          onClick={() => {
+            history.push(`/spots/${id}`);
+          }}
             className="paneImage"
             src={spot.previewImage}
             alt="photo unavailable"
@@ -36,9 +36,9 @@ export default function SpotPane(props) {
           <p className="price">
             {`$${spot.price}`} <span className="spanPrice">night</span>{" "}
           </p>
-        </div>
+
         {props.footer ? (
-          <div style={{ display: "flex" }}>
+          <div className = "manageButtons" style={{ display: "flex", justifyContent: 'space-between', margin: '5px 5px'}}>
             <button
               onClick={() => {
                 history.push(`/spots/${spot.id}/edit`);
@@ -59,6 +59,7 @@ export default function SpotPane(props) {
       {showDeleteModal ? (
         <DeleteSpotPopout spot={spot} setShowDeleteModal={setShowDeleteModal} />
       ) : null}
+      </div>
     </>
   );
 }

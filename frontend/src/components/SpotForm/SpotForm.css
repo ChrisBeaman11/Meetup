@@ -3,6 +3,23 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    border: 2px solid black;
+    margin: 5em 5em;
+    padding: 3em;
+}
+.FormContainer input{
+    width: 25em;
+    height: 2em;
+    border-radius: 20px;
+    padding: 2px 2px;
+    margin-top: 1em;
+}
+.FormContainer textarea{
+    margin: 3em;
+    width: 55em;
+    height: 14em;
+
+    padding: 10px 10px;
 }
 
 .subFormContainer {
@@ -25,6 +42,10 @@ label{
     margin: auto;
     background-color: #FF5A5F;
     color: white;
+}
+.submitButton:hover{
+    cursor: pointer;
+    background-color: #ed0b12;
 }
 .errors {
     color: red;

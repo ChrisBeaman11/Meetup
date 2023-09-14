@@ -75,7 +75,7 @@ export const deleteSingleSpot = (id) => async (dispatch) => {
     if (response.ok) {
       const spot = await response.json();
       dispatch(removeSpot(id));
-      
+
     }
   } catch (err) {
     console.log("Failed to fetch the spot:", err);
@@ -140,7 +140,7 @@ const spotsReducer = (
     case LOAD_ALL_SPOTS:
       let allSpots = {};
       action.spots.Spots.map((spot) => {
-        let id = spot["id"];
+        let id = spot.id;
         allSpots[id] = spot;
       });
       return { ...state, allSpots };
