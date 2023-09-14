@@ -1,4 +1,5 @@
 .signupModal{
+  padding-top: 1em;
   position: fixed;
   z-index: 1;
   left: calc(50% - 350px);
@@ -51,5 +52,7 @@
 
 .signupForm input{
   border-radius: 20px;
+  height: 2.2em;
   padding: 2px 5px;
+  margin-top: 5px;
 }

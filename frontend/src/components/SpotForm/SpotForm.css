@@ -6,6 +6,7 @@
     border: 2px solid black;
     margin: 5em 5em;
     padding: 3em;
+    width: 100%;
 }
 .FormContainer input{
     width: 25em;
@@ -16,7 +17,7 @@
 }
 .FormContainer textarea{
     margin: 3em;
-    width: 55em;
+    width: 50em;
     height: 14em;
 
     padding: 10px 10px;
