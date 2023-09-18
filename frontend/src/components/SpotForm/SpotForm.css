@@ -5,7 +5,7 @@
     align-items: center;
     border: 2px solid black;
     padding: 3em;
-    width: 100%;
+    width: 90%;
     margin: 3em;
 }
 .FormContainer input{
@@ -16,7 +16,7 @@
     margin-top: 1em;
 }
 .FormContainer textarea{
-    margin: 3em;
+    margin: 1.2em;
     width: 50em;
     height: 14em;
 
@@ -57,6 +57,10 @@ label{
     flex-direction: column;
     align-items: center;
     gap: 10px;
+
+  }
+  .previewImagesFields input{
+    padding: 5px 5px;
   }
 
   .headerStuff{
@@ -66,13 +70,18 @@ label{
     align-items: center;
   }
 .descriptionText{
-    width: 300px;
+    margin-top: 15px;
+    width:  30em;
 }
 
 .titleStuff{
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 8px;
+}
+.titleStuff input{
+    padding: 5px 5px;
 }
 
 
@@ -86,10 +95,18 @@ label{
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 8px;
+}
+.priceStuff input{
+    padding: 5px 5px;
 }
 
 .photoStuff{
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 8px;
+}
+.photoStuff input{
+    padding: 5px 5px;
 }

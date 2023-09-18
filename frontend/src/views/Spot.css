@@ -5,8 +5,7 @@
   }
 
   .spot-details-container {
-    margin: 0 auto;
-    max-width: 1200px;
+    margin: 3em 20%;
     padding: 20px;
   }
 
@@ -88,8 +87,8 @@
     border: lightgray solid 1px;
     background-color: lightblue;
     margin-bottom: 15px;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 20%;
+    margin-right: 20%;
     padding: 15px 30px;
     border: 1px solid black;
     border-radius: 15px;
@@ -98,6 +97,7 @@
   .delete-review-button {
     width: 100px;
     height: 30px;
+    box-shadow: 2px 2px;
     background-color: gray;
   }
 
@@ -108,6 +108,10 @@
     margin-bottom: 20px;
   }
   .post-review-button:hover{
+    background-color: #FF5A5F;
+    cursor: pointer;
+  }
+  .delete-review-button:hover{
     background-color: #FF5A5F;
     cursor: pointer;
   }
