@@ -4,7 +4,6 @@
     box-sizing: border-box;
   }
 
-  /* Airbnb-like spot details page styles */
   .spot-details-container {
     margin: 0 auto;
     max-width: 1200px;
@@ -24,26 +23,26 @@
 
   .spot-details-images {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
-    margin-bottom: 30px; /* Add margin to create spacing */
+    margin-bottom: 30px;
   }
 
   .main-preview {
     width: 100%;
-    max-height: 400px;
+    height: 350px;
     object-fit: cover;
   }
 
   .right-side {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
 
   .right-side img {
     width: 100%;
-    max-height: 200px;
+    height: 171px;
     object-fit: cover;
   }
 
@@ -66,9 +65,7 @@
     margin-top: 10px;
   }
 
-  .spot-details-info-box {
-    flex: 1;
-  }
+
 
   .divider {
     border: 1px solid #ccc;
