@@ -6,6 +6,7 @@
 }
 .reserveButton:hover{
     cursor: pointer;
+    background-color: rgb(85, 72, 111);
 }
 
 .box{

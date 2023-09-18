@@ -5,7 +5,12 @@
 .noButton{
     background-color: gray;
 }
-
+.yesButton:hover{
+    cursor: pointer;
+}
+.noButton:hover{
+cursor: pointer;
+}
 .deleteReviewModal{
     position: fixed;
     z-index: 1;

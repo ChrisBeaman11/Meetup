@@ -107,8 +107,12 @@
   .post-review-button {
     background-color: gray;
     box-shadow: 2px 2px;
-    margin-left: 25%;
+    margin-left: 26%;
     margin-bottom: 20px;
+  }
+  .post-review-button:hover{
+    background-color: #FF5A5F;
+    cursor: pointer;
   }
 
   @media (max-width: 1200px) {

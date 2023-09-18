@@ -5,6 +5,12 @@
 .noButton{
     background-color: gray;
 }
+.yesButton:hover{
+    cursor: pointer;
+}
+.noButton:hover{
+cursor: pointer;
+}
 
 
 
