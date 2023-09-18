@@ -8,7 +8,7 @@
     transition: transform 0.2s, box-shadow 0.2s;
   }
 
-  .paneContainer {
+  .paneContainer:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
   }
