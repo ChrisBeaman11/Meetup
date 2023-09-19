@@ -106,6 +106,7 @@
     box-shadow: 2px 2px;
     margin-left: 26%;
     margin-bottom: 20px;
+    padding: 5px 5px;
   }
   .post-review-button:hover{
     background-color: #FF5A5F;
