@@ -10,6 +10,7 @@ import UpdateSpot from "./views/UpdateSpot";
 import ManageSpots from "./views/ManageSpots";
 import Footer from "./components/Footer";
 import Booking from "./views/Booking";
+import YourBookings from "./views/YourBookings";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route exact path="/spots/current">
             <ManageSpots />
+          </Route>
+          <Route exact path = "/bookings/current">
+            <YourBookings/>
           </Route>
           <Route exact path="/spots/:spotId/edit">
             <UpdateSpot />
