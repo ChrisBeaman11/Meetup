@@ -21,3 +21,21 @@
 .bookingPageCont{
     margin-bottom: 10em;
 }
+.submitSection{
+    margin-top: 7em;
+    display: flex;
+    justify-content: center;
+}
+
+.submitSection button{
+    background-color: gray;
+    color: white;
+    width: 50%;
+    height: 2em;
+    font-size: 2em;
+    border-radius: 15px;
+}
+.submitSection button:hover{
+    cursor: pointer;
+    background-color: #FF5A5F;
+}

@@ -16,6 +16,9 @@ const Booking = () =>{
                 </div>
             <SpotBookingDetails></SpotBookingDetails>
             </div>
+            <div className="submitSection">
+                <button>Confirm Your Stay</button>
+            </div>
         </div>
 )
 
