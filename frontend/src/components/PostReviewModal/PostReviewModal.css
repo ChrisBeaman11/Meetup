@@ -1,20 +1,21 @@
 .submitButton{
     color: white;
-    background-color: #FF5A5F;
-    box-shadow: 2px 2px;
+    background-color: gray;
     width: 200px;
 }
 
 .reviewTextArea{
     background-color: lightblue;
+    width: 600px;
+    height: 200px;
 }
 
 .modalContainer{
     position: fixed;
     z-index: 1;
-    left: calc(50% - 200px);
+    left: calc(50% - 400px);
     top: calc(50% - 250px);
-    width: 400px;
+    width: 800px;
     height: 500px;
     overflow: auto;
     border-radius: 10px;
@@ -22,13 +23,23 @@
 }
 
 .modalContent {
+    margin-top: 2em;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
 }
-
+.rating:hover{
+    cursor: pointer;
+}
+.submitButton:hover{
+    background-color: #FF5A5F;
+}
 .submitButton[disabled]{
+    background-color: lightgray;
+    color: gray;
+}
+.submitButton[disabled]:hover{
     background-color: lightgray;
     color: gray;
 }

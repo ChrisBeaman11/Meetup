@@ -1,15 +1,15 @@
-/* Reset some default styles */
+
 body, html {
     margin: 0;
     padding: 0;
   }
 
-  /* Apply a background color similar to Airbnb's */
+
   body {
     background-color: #f7f7f7;
   }
 
-  /* Header styles */
+
   .header {
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -19,14 +19,13 @@ body, html {
     align-items: center;
   }
 
-  /* Logo */
+
   .logo {
     font-size: 24px;
     font-weight: bold;
     color: #ff5a5f;
   }
 
-  /* Navigation */
   .nav {
     display: flex;
     gap: 20px;
@@ -38,9 +37,8 @@ body, html {
     font-weight: 500;
   }
 
-  /* Hero section */
   .hero {
-    background-color: #ff5a5f; /* Set a background color */
+    background-color: #ff5a5f;
     color: #ffffff;
     padding: 100px 0;
     text-align: center;
@@ -49,16 +47,15 @@ body, html {
   .hero h1 {
     font-size: 36px;
     margin-bottom: 20px;
-    color: #fff; /* Change the text color to white */
+    color: #fff;
   }
 
   .hero p {
     font-size: 18px;
     margin-bottom: 40px;
-    color: rgba(255, 255, 255, 0.8); /* Adjust the opacity for better readability */
+    color: rgba(255, 255, 255, 0.8);
   }
 
-  /* Search section */
   .search {
     background-color: #ffffff;
     padding: 40px;
@@ -66,12 +63,12 @@ body, html {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
-  /* Result cards */
   .results {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 30px;
     margin: 2em 15em;
+    margin-bottom: 80px;
   }
 
   .result-card {
@@ -95,5 +92,3 @@ body, html {
     font-size: 16px;
     color: #555;
   }
-
-  /* Footer styles */

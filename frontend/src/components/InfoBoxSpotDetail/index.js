@@ -1,9 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import './InfoBoxSpotDetail.css';
+import { useHistory } from "react-router-dom";
 export default function InfoBox(){
     const spot = useSelector((state) => state.spots.selectedSpot);
     let reviews;
+    let history = useHistory();
     if(spot.numReviews===1){
         reviews = "review"
     }
@@ -17,7 +19,7 @@ export default function InfoBox(){
                 <p>${spot.price} night</p>
                 <p><i className="fas fa-star"></i> {rating}</p>
                 </div>
-                <button onClick={() => alert("Feature coming soon")} className = "reserveButton">Reserve</button>
+                <button onClick={() => history.push(`${spot.id}/bookings`)} className = "reserveButton">Reserve</button>
             </div>
         )
 }

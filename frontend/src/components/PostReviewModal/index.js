@@ -96,7 +96,7 @@ export default function PostReviewModal(props) {
           <textarea
             className="reviewTextArea"
             name=""
-            placeholder="Leave your review here..."
+            placeholder="Leave your review here...(min 10 characters)"
             id=""
             cols="30"
             rows="10"

@@ -24,12 +24,12 @@ const Landing = () => {
       <section className="search">
         {/* Search form can be added here */}
       </section>
-      <div className="GridContainer results">
+      <div className="results">
         {spots.map((spot, i) => {
           return <SpotPane key={i} spot={spot} />;
         })}
       </div>
-      
+
     </Suspense>
   );
 };
