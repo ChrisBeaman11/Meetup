@@ -1,0 +1,47 @@
+.displayImage img{
+    height: 106px;
+    width: 124px;
+}
+.topCont{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    margin-left: 25px;
+    margin-right: 160px;
+    margin-bottom: 30px;
+}
+.rightSideDisplay{
+    display: flex;
+    flex-direction: column;
+}
+
+.detailsPane{
+    border: 2px solid gray;
+    border-radius: 30px;
+    width: 400px;
+    height: 450px;
+}
+.detailsPane hr{
+    margin-right: 25px;
+}
+.priceDetails{
+    margin-left: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.taxAddition{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 50px;
+}
+.totalPrice{
+    display: flex;
+    justify-content: space-between;
+    margin-right:50px;
+}
+.nightAndPrice{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 50px;
+}

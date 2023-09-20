@@ -1,14 +1,21 @@
-import React, { useState } from "react";
-import DatePicker from 'react-datepicker';
+import React from "react";
 import 'react-datepicker/dist/react-datepicker.css'
+import SpotBookingDetails from "../components/SpotBookingDetails";
+import './Booking.css';
 const Booking = () =>{
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
     return(
-        <div>
-            <h1>Confirm your stay</h1>
-            <DatePicker selected={startDate} onChange={(startDate) => setStartDate(startDate)} />
-            <DatePicker selected={endDate} onChange={(endDate) => setEndDate(endDate)} />
+        <div className="bookingPageCont">
+            <h1 className="headingBook">Confirm your stay</h1>
+            <div className="detailsCont">
+                <div className="dateStuff">
+                    <h3>Your trip</h3>
+                    <div className="stayTime">
+                        <h3>Dates</h3>
+                        <p>September 19 - September 24</p>
+                    </div>
+                </div>
+            <SpotBookingDetails></SpotBookingDetails>
+            </div>
         </div>
 )
 

@@ -15,9 +15,9 @@
     align-items: center;
     border: 1px solid black;
     border-radius: 5px;
-    width: 300px;
+    width: 400px;
     padding-bottom: 20px;
-    height: 150px;
+    height: 250px;
     gap: 20px;
 }
 
@@ -25,4 +25,10 @@
     padding-top: 30px;
     display: flex;
     gap: 30px;
+}
+
+.datesSection{
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
 }
