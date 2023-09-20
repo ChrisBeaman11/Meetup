@@ -2,9 +2,9 @@
   position: fixed;
   z-index: 1;
   left: calc(50% - 200px);
-  top: calc(50% - 200px);
+  top: calc(50% - 215px);
   width: 400px;
-  height: 400px;
+  height: 430px;
   overflow: auto;
   border-radius: 20px;
   background-color: rgb(196 194 194);
@@ -52,4 +52,13 @@
 }
 .loginModal h1{
   padding-top: 1em;
+}
+.switchToSignup{
+  width: 250px;
+  border-radius: 15px;
+  height: 30px;
+}
+.switchToSignup:hover{
+  cursor: pointer;
+  background-color: rgb(85, 72, 111);
 }

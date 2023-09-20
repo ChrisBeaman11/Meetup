@@ -4,6 +4,7 @@ import './InfoBoxSpotDetail.css';
 import { useHistory } from "react-router-dom";
 import DatePicker from 'react-datepicker';
 export default function InfoBox(){
+    const sessionUser = useSelector((state) => state.session.user);
     const spot = useSelector((state) => state.spots.selectedSpot);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
@@ -36,7 +37,8 @@ export default function InfoBox(){
                 <p>${spot.price} night</p>
                 <p><i className="fas fa-star"></i> {rating}</p>
                 </div>
-                <button onClick={() => history.push(`${spot.id}/bookings`)} className = "reserveButton">Reserve</button>
+                {sessionUser&&<button onClick={() => history.push(`${spot.id}/bookings`)} className = "reserveButton">Reserve</button>}
+                {!sessionUser&&<button onClick={() => alert("Must be logged in to reserve a stay!")} className = "reserveButton">Reserve</button>}
             </div>
         )
 }

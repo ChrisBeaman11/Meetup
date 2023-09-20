@@ -18,6 +18,7 @@ function LoginFormModal() {
    dispatch(sessionActions.login({credential: 'Demo-lition', password: 'password'})).then(closeModal);
  }
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
@@ -56,6 +57,7 @@ function LoginFormModal() {
         )}
         <button className="loginButton" disabled={credential.length<4 || password.length<6}type="submit">Log In</button>
         <button onClick={demoSignIn} className="demoUserButton">Continue as demo user</button>
+        <button className="switchToSignup" onClick={closeModal}>New User? Sign up</button>
       </form>
       </div>
     </>

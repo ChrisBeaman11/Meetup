@@ -3,6 +3,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import SpotBookingDetails from "../components/SpotBookingDetails";
 import './Booking.css';
 const Booking = () =>{
+
     return(
         <div className="bookingPageCont">
             <h1 className="headingBook">Confirm your stay</h1>
