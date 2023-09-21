@@ -119,18 +119,7 @@ export const updateSingleSpot = (spot) => async (dispatch) => {
   }
 };
 
-// export const fetchAllReviewsBySpot = (spotId) => async (dispatch) => {
-//   try {
-//     const response = await csrfFetch(`api/spots/${spotId}/reviews`);
-//     if (!response.ok) {
-//       throw new Error("Failed to fetch reviews");
-//     }
-//     const reviews = await response.json();
-//     dispatch(loadAllSpots(reviews));
-//   } catch (err) {
-//     console.log("Failed to fetch reviews:", err);
-//   }
-// };
+
 
 const spotsReducer = (
   state = { allSpots: {}, selectedSpot: {} },

@@ -1,15 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './YourBookings.css';
+import { useDispatch, useSelector } from "react-redux";
+import BookingPane from "../components/BookingPane";
+import { fetchAllBookings } from "../store/bookings";
 
-const YourBookings = () =>{
+const YourBookings = () => {
+    const dispatch = useDispatch();
 
-    return(
-        <div className="currentBookingsPage">
+    useEffect(() => {
+      dispatch(fetchAllBookings());
+    }, [dispatch]);
 
-                <div className="bookHead"><h2>Your current bookings</h2>
-                </div>
+    const bookings = useSelector((state) => Object.values(state.bookings.allBookings));
+    if(!bookings.length) return null;
+    return (
+      <div className="currentBookingsPage">
+        <div className="bookHead">
+          <h2>Your current bookings</h2>
         </div>
-    )
-}
+        <div className="resultsBooking">
+          {bookings[0].map((booking) => {
 
-export default YourBookings
+            return <BookingPane key={booking.id} booking={booking} />;
+          })}
+        </div>
+      </div>
+    );
+  }
+
+export default YourBookings;

@@ -1,0 +1,11 @@
+.dates{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 20px;
+}
+
+.yourBookingPane{
+}
