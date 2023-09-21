@@ -5,7 +5,30 @@
     margin-left: 20px;
     margin-right: 20px;
     padding-top: 20px;
-}
 
-.yourBookingPane{
+}
+.start{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.end{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.buttCont{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+.deleteBooking{
+    width: 80%;
+    border-radius: 10px;
+    height: 30px;
+    background-color: #ff5a5f;
+}
+.deleteBooking:hover{
+    cursor: pointer;
+    background-color: rgb(102, 132, 132);
 }

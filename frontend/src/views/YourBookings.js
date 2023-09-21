@@ -12,7 +12,7 @@ const YourBookings = () => {
     }, [dispatch]);
 
     const bookings = useSelector((state) => Object.values(state.bookings.allBookings));
-    if(!bookings.length) return null;
+    if(!bookings.length || !bookings) return null;
     return (
       <div className="currentBookingsPage">
         <div className="bookHead">

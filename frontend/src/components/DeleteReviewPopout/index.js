@@ -1,12 +1,11 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import { deleteSingleReview } from "../../store/reviews";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import './DeleteReviewPopout.css';
 
 export default function DeleteReviewPopout(props) {
     let dispatch = useDispatch();
-   
+
   return (
     <div className="deleteReviewModal">
       <h2>Confirm Delete</h2>

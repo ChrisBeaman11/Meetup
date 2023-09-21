@@ -1,17 +1,11 @@
 import React from "react";
 import './BookingPane.css';
+import { useState } from "react";
 import SpotBookingDetails from "../SpotBookingDetails";
-import { fetchSingleSpot } from "../../store/spots";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import DeleteBookingPopout from "../DeleteBookingPopout";
 const BookingPane = (props) =>{
-    let dispatch = useDispatch();
     let booking = props.booking;
-    let spotId = booking.spotId;
-    console.log("THIS IS MY SPOT ID", spotId);
-    useEffect(() => {
-        dispatch(fetchSingleSpot(spotId));
-      }, [dispatch, spotId]);
+    let [showDeleteModal, setShowDeleteModal] = useState(false);
   if(!booking) return null;
     return(
         <div className="yourBookingPane">
@@ -26,7 +20,13 @@ const BookingPane = (props) =>{
                 </div>
             </div>
             <SpotBookingDetails></SpotBookingDetails>
-        </div>
+            <div className="buttCont"><button onClick={() => {
+                setShowDeleteModal(true);
+              }}className="deleteBooking">Delete Booking</button>
+            </div>
+            {showDeleteModal ? (
+        <DeleteBookingPopout booking={booking} setShowDeleteModal={setShowDeleteModal} />
+      ) : null}</div>
     )
 }
 
