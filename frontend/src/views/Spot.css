@@ -48,7 +48,8 @@
   .spot-details-host {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 30px;
+    margin-bottom: 70px;
+    margin-top: 40px;
   }
 
   .host-description {
@@ -56,12 +57,14 @@
   }
 
   .host-name {
-    font-size: 24px;
+    font-size: 30px;
+    margin-bottom: 30px;
   }
 
   .spot-description {
-    font-size: 18px;
+    font-size: 24px;
     margin-top: 10px;
+    margin-right: 15%;
   }
 
 
@@ -86,7 +89,7 @@
     gap: 20px;
     border: lightgray solid 1px;
     background-color: lightblue;
-    margin-bottom: 15px;
+    margin-bottom: 35px;
     margin-left: 20%;
     margin-right: 20%;
     padding: 15px 30px;
