@@ -58,13 +58,6 @@ const SpotForm = ({ spot, formType }) => {
       );
     }
   };
-  // setInFlight(false);
-
-  //   useEffect(() => {
-  //     if (inFlight === false && spotLoaded.id) {
-  //       history.push(`spots/${spot.id}`);
-  //     }
-  //   }, [inFlight]);
 
   useEffect(() => {
     let errorObj = {};

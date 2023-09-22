@@ -1,7 +1,7 @@
 .detailsCont{
     display: flex;
     justify-content: space-between;
-    margin-top: 10em;
+    margin-top: 5em;
     margin-right: 25%;
     margin-left: 13%;
 }
@@ -49,4 +49,14 @@
 
 .dateStuff h3{
     margin-bottom: 15px;
+}
+
+
+.errorCont{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    color: red;
+    align-items: center;
+    gap: 20px;
 }

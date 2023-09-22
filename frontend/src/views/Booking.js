@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import SpotBookingDetails from "../components/SpotBookingDetails";
 import "./Booking.css";
@@ -6,7 +6,9 @@ import { useHistory, useParams } from "react-router-dom";
 import { createSingleBooking } from "../store/bookings";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 const Booking = () => {
+  const [errors, setErrors] = useState({});
   let dispatch = useDispatch();
   let history = useHistory();
   let { startDate } = useParams();
@@ -21,6 +23,9 @@ const Booking = () => {
     return (e.getTime() - s.getTime()) / (1000 * 3600 * 24);
   };
   const handleSubmit = async (e) => {
+    e.preventDefault();
+    if(Object.keys(errors).length>0)return;
+    setErrors({});
     const bookingData = {
       startDate,
       endDate,
@@ -31,9 +36,21 @@ const Booking = () => {
       history.push(`/spots/${spot.id}`)
     );
   };
+
+  useEffect(() => {
+    let errorObj = {};
+    if(startDate >= endDate){
+      errorObj.error = "The end date must start after the start date.";
+    }
+    setErrors(errorObj);
+  })
   return (
     <div className="bookingPageCont">
       <h1 className="headingBook">Confirm your stay</h1>
+      {errors.error &&<div className="errorCont">
+        <h2>GO BACK!</h2>
+        <p>{errors.error}
+        </p></div>}
       <div className="detailsCont">
         <div className="dateStuff">
           <h3>Your trip</h3>
