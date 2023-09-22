@@ -5,6 +5,10 @@ import SpotBookingDetails from "../SpotBookingDetails";
 import DeleteBookingPopout from "../DeleteBookingPopout";
 const BookingPane = (props) =>{
     let booking = props.booking;
+    let spotId = booking.spotId;
+          let startDate = new Date(booking.startDate);
+          let endDate = new Date(booking.endDate);
+          let days = (endDate.getTime()-startDate.getTime())/(1000*3600*24);
     let [showDeleteModal, setShowDeleteModal] = useState(false);
   if(!booking) return null;
     return(
@@ -19,13 +23,13 @@ const BookingPane = (props) =>{
                     <p>{booking.endDate}</p>
                 </div>
             </div>
-            <SpotBookingDetails></SpotBookingDetails>
+            <SpotBookingDetails days = {days} spotId = {spotId}></SpotBookingDetails>
             <div className="buttCont"><button onClick={() => {
                 setShowDeleteModal(true);
               }}className="deleteBooking">Delete Booking</button>
             </div>
             {showDeleteModal ? (
-        <DeleteBookingPopout booking={booking} setShowDeleteModal={setShowDeleteModal} />
+        <DeleteBookingPopout days = {days} booking={booking} setShowDeleteModal={setShowDeleteModal} />
       ) : null}</div>
     )
 }

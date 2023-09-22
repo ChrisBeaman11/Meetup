@@ -39,3 +39,14 @@
     cursor: pointer;
     background-color: #FF5A5F;
 }
+
+.dateSec{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.dateStuff h3{
+    margin-bottom: 15px;
+}

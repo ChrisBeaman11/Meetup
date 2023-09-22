@@ -1,6 +1,5 @@
 import { csrfFetch } from "./csrf";
 
-
 export const LOAD_ALL_BOOKINGS = "bookings/LOAD_ALL_BOOKINGS";
 export const RECEIVE_BOOKING = "bookings/RECEIVE_BOOKING";
 export const REMOVE_BOOKING = "bookings/REMOVE_BOOKING";
@@ -65,24 +64,25 @@ export const deleteSingleBooking = (bookingId) => async (dispatch) => {
   }
 };
 
-export const createSingleBooking = (spotId, bookingData) => async (dispatch) => {
-  try {
-    const response = await csrfFetch(`/api/spots/${spotId}/bookings`, {
-      method: "POST",
-      body: JSON.stringify(bookingData),
-    });
+export const createSingleBooking =
+  (spotId, bookingData) => async (dispatch) => {
+    try {
+      const response = await csrfFetch(`/api/spots/${spotId}/bookings`, {
+        method: "POST",
+        body: JSON.stringify(bookingData),
+      });
 
-    if (response.ok) {
-      const createdBooking = await response.json();
-      dispatch(createBooking(createdBooking));
-      return createdBooking.id;
+      if (response.ok) {
+        const createdBooking = await response.json();
+        dispatch(createBooking(createdBooking));
+        return createdBooking.id;
+      }
+    } catch (err) {
+      console.log("Failed to create the booking:", err);
     }
-  } catch (err) {
-    console.log("Failed to create the booking:", err);
-  }
-};
+  };
 const initialState = {
-  allBookings: {},
+  allBookings: { Bookings: [] },
   selectedBooking: {},
 };
 
@@ -95,15 +95,21 @@ const bookingsReducer = (state = initialState, action) => {
     case REMOVE_BOOKING:
       return {
         ...state,
-        allBookings: { ...state.allBookings, [action.bookingId]: null },
+        allBookings: {
+          Bookings: state.allBookings.Bookings.filter((booking) => {
+            if (booking.id !== action.bookingId) {
+              return true;
+            }
+            return false;
+          }),
+        },
       };
     case CREATE_BOOKING:
+      let copy = state.allBookings;
+      let copy2 = copy.Bookings.push({ ...action.booking });
       return {
         ...state,
-        allBookings: {
-          ...state.allBookings,
-          [action.booking.id]: action.booking,
-        },
+        allBookings: copy2,
       };
     default:
       return state;

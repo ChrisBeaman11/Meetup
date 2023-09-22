@@ -37,7 +37,7 @@ export default function InfoBox(){
                 <p>${spot.price} night</p>
                 <p><i className="fas fa-star"></i> {rating}</p>
                 </div>
-                {sessionUser&&<button onClick={() => history.push(`${spot.id}/bookings`)} className = "reserveButton">Reserve</button>}
+                {sessionUser&&<button onClick={() => history.push(`${spot.id}/bookings/startDate=${startDate.toISOString().substring(0, 10)}/endDate=${endDate.toISOString().substring(0, 10)}/price=${spot.price}`)} className = "reserveButton">Reserve</button>}
                 {!sessionUser&&<button onClick={() => alert("Must be logged in to reserve a stay!")} className = "reserveButton">Reserve</button>}
             </div>
         )
