@@ -17,7 +17,7 @@ module.exports = {
         lat: 37.7645358,
         lng: -122.4730327,
         name: "Desert Dream Home",
-        description: "Our stay in the Desert Dream Home was pure luxury. Every room had stunning desert views. We relaxed by the pool, soaked in the spa, and enjoyed desert sunsets. A desert paradise!",
+        description: "Discover luxury in the desert. This sleek oasis offers a pool, spa, and desert views from every room.",
         price: 123
       },
       {
@@ -29,7 +29,7 @@ module.exports = {
         lat: 39.7645358,
         lng: -124.4730327,
         name: "Urban Oasis",
-        description: "This Urban Oasis exceeded our expectations. The loft is stylish, and the city views from the rooftop pool are stunning. We explored the vibrant neighborhood, trying out amazing restaurants. A fantastic city stay!",
+        description: "Located in the heart of the city, this modern loft boasts skyline views, a rooftop pool, and easy access to trendy restaurants.",
         price: 125
       },
       {
@@ -41,7 +41,7 @@ module.exports = {
         lat: 32.7645358,
         lng: -126.4730327,
         name: "Rustic Riverside Retreat",
-        description: "Our stay at the Rustic Riverside Retreat was pure serenity. Nestled by the river, the cottage had a welcoming charm. Days were spent fishing from our private dock, and evenings by the bonfire were magical. If you crave nature's embrace and tranquility, this is your spot!",
+        description: "Escape to this charming riverside cottage. With a private dock, bonfire pit, and serene woodland surroundings, it's perfect for outdoor enthusiasts and relaxation seekers.",
         price: 200
       },
       {
@@ -53,7 +53,7 @@ module.exports = {
         lat: 32.7645358,
         lng: -126.4730327,
         name: "Secluded Treehouse",
-        description: "The Secluded Treehouse is a whimsical gem. Sleeping among the trees was enchanting. We spent our days bird-watching and nights stargazing from the canopy bed. Truly a one-of-a-kind escape!",
+        description: "Live among the treetops in this unique treehouse escape. Watch birds, read, or stargaze from your private canopy bed.",
         price: 127
       },
       {
@@ -65,7 +65,7 @@ module.exports = {
         lat: 32.7645358,
         lng: -126.4730327,
         name: "Lakeside Cottage",
-        description: "The Lakeside Cottage was a tranquil haven. We fished, kayaked, and simply savored the lake life. The cottage had all we needed, and we couldn't get enough of the serene waterside setting. A must for nature lovers!",
+        description: "Fish, kayak, or just relax by the lake. This cozy cottage provides the perfect lakeside retreat for nature lovers.",
         price: 175
       },
       {
@@ -77,7 +77,7 @@ module.exports = {
         lat: 32.7645358,
         lng: -126.4730327,
         name: "Mountain View Lodge",
-        description: "Our stay at the Mountain View Lodge was a dream come true. Hiking trails at our doorstep, followed by a soak in the hot tub, was the perfect combo. The lodge's rustic charm and mountain vistas are unforgettable.",
+        description: "Experience the Rockies in this rustic lodge. Hike by day, unwind in the hot tub by night, and savor the mountain life.",
         price: 252
       },
       {
@@ -89,7 +89,7 @@ module.exports = {
         lat: 32.7645358,
         lng: -126.4730327,
         name: "Historic Hideaway",
-        description: "Staying in the Historic Hideaway was like stepping back in time, but with all modern comforts. We loved walking to historic sites and dining at local spots. A unique and charming experience!",
+        description: "Stay in a beautifully restored 19th-century townhouse. Walk to historic sites, dine at local gems, and soak in the historic charm.",
         price: 300
       },
       {
@@ -101,7 +101,7 @@ module.exports = {
         lat: 32.7645358,
         lng: -126.4730327,
         name: "Beachfront Paradise",
-        description: "Words can't describe the beauty of this Beachfront Paradise. Waking up to the ocean outside your window is breathtaking. We spent our days sunbathing and evenings with sunset views. It's a slice of heaven!",
+        description: "Wake up to ocean waves in this beachfront bungalow. Relax on your private terrace and sip cocktails with sunset views.",
         price: 240
       }
     ], {});

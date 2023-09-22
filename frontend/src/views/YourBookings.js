@@ -14,7 +14,7 @@ const YourBookings = () => {
   const bookings = useSelector((state) =>
     Object.values(state.bookings.allBookings)
   );
-  console.log("THESE ARE TEEHEHHE HEBOOKINGS HERE", bookings);
+  
   if (bookings.length === 0 || !bookings) return null;
   return (
     <div className="currentBookingsPage">
