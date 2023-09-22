@@ -216,53 +216,53 @@ module.exports = {
 
         {
           spotId: 9,
-          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0fI7z0qQQZdSQyBnysoLguSB_nf9yGTXlQA&usqp=CAU",
+          url: "https://media.architecturaldigest.com/photos/56748b18b313ecbd18113301/master/w_2639,h_1429,c_limit/beach-house-designs-seaside-living-book-10.jpg",
           preview: true,
         },
         {
           spotId: 9,
-          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPnQI9ake1XUZBlRv_rIH_J5F_tLbQtjy2YQ&usqp=CAU",
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMqmznn0d4hI3izqPsCTRHOixyc7cpaphMUzso1pEcN0RgwLy5X2gVCB5ZTg9iNUazcW4&usqp=CAU",
           preview: true,
         },
         {
           spotId: 9,
-          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7HQDdFoEs6SLXInR5U3sYNa8KGiL3jSfRzQ&usqp=CAU",
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHSWzSOSDktFRuy-wWflVQf8Yqi8_eKpI4yg&usqp=CAU",
           preview: true,
         },
         {
           spotId: 9,
-          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6NOjbCximV4RGPZ5h8BSPjiJrWjXpC4J7QA&usqp=CAU",
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfeVnHWg0WZGmUEd0R3xT6pPyjbjtMwKNBUg&usqp=CAU",
           preview: true,
         },
         {
           spotId: 9,
-          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfzncDtquVJteJ4O6jPAE2Cs9ACFdJadJFiQ&usqp=CAU",
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeq2jub_o8MWYjz6R_vrGULKrA2gwnb3kk9w&usqp=CAU",
           preview: true,
         },
 
         {
           spotId: 10,
-          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0fI7z0qQQZdSQyBnysoLguSB_nf9yGTXlQA&usqp=CAU",
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsoxWb7HTC_WfJ2jlslGAdkygl9NhugAGsWw&usqp=CAU",
           preview: true,
         },
         {
           spotId: 10,
-          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPnQI9ake1XUZBlRv_rIH_J5F_tLbQtjy2YQ&usqp=CAU",
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7F3hwVcfVp8jr32reMzWpbUvKHgKFjAA0zw&usqp=CAU",
           preview: true,
         },
         {
           spotId: 10,
-          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7HQDdFoEs6SLXInR5U3sYNa8KGiL3jSfRzQ&usqp=CAU",
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7EkGwW4wF1u3ah_yE4jNTkBux4P0XhentIg&usqp=CAU",
           preview: true,
         },
         {
           spotId: 10,
-          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6NOjbCximV4RGPZ5h8BSPjiJrWjXpC4J7QA&usqp=CAU",
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqDmfR85SQe0aH98oDxrHPdlfBjWTrRva5yw&usqp=CAU",
           preview: true,
         },
         {
           spotId: 10,
-          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfzncDtquVJteJ4O6jPAE2Cs9ACFdJadJFiQ&usqp=CAU",
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6orhmNcEnVKibXfOZtTNqa1-PhwfGU1oA_w&usqp=CAU",
           preview: true,
         },
 
