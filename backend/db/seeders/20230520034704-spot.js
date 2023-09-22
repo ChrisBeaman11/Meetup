@@ -103,6 +103,54 @@ module.exports = {
         name: "Beachfront Paradise",
         description: "Wake up to ocean waves in this beachfront bungalow. Relax on your private terrace and sip cocktails with sunset views.",
         price: 240
+      },
+      {
+        ownerId: 1,
+        address: '8000 a street',
+        city: 'Athens',
+        state: 'Ohio',
+        country: "United States",
+        lat: 32.7645358,
+        lng: -126.4730327,
+        name: "Serene Seaside Getaway",
+        description: "Escape to a tranquil seaside haven. Wake up to the soothing sound of waves, enjoy sweeping ocean views from your private terrace, and stroll down to your secluded beach for a day of sun and surf,",
+        price: 240
+      },
+      {
+        ownerId: 1,
+        address: '7000 a street',
+        city: 'Stubenville',
+        state: 'Ohio',
+        country: "United States",
+        lat: 32.7645358,
+        lng: -126.4730327,
+        name: "Chic Urban Loft Retreat",
+        description: "Immerse yourself in vibrant city life in this spacious loft. Modern design meets comfort, and a rooftop garden offers a serene escape from the bustling streets below. Explore local art, cuisine, and culture just steps from your door.",
+        price: 240
+      },
+      {
+        ownerId: 1,
+        address: '6000 a street',
+        city: 'Pittsburgh',
+        state: 'Pennsylvania',
+        country: "United States",
+        lat: 32.7645358,
+        lng: -126.4730327,
+        name: "Rustic Mountain Cabin",
+        description: "Reconnect with nature in this cozy cabin surrounded by majestic mountains. Hike scenic trails, cozy up by the fireplace, and savor the tranquility of the wilderness. A perfect retreat for outdoor enthusiasts.",
+        price: 240
+      },
+      {
+        ownerId: 1,
+        address: '5000 a street',
+        city: 'Paris',
+        state: 'Pennsylvania',
+        country: "United States",
+        lat: 32.7645358,
+        lng: -126.4730327,
+        name: "Vintage Charm Cottage",
+        description: "Experience the allure of a bygone era in this charming cottage. Antiques and cozy furnishings create a warm and inviting atmosphere. Relax by the crackling fireplace or take a stroll through the garden for a delightful escape.",
+        price: 240
       }
     ], {});
   },

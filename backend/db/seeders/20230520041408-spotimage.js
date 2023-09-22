@@ -213,6 +213,110 @@ module.exports = {
           url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfzncDtquVJteJ4O6jPAE2Cs9ACFdJadJFiQ&usqp=CAU",
           preview: true,
         },
+
+        {
+          spotId: 9,
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0fI7z0qQQZdSQyBnysoLguSB_nf9yGTXlQA&usqp=CAU",
+          preview: true,
+        },
+        {
+          spotId: 9,
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPnQI9ake1XUZBlRv_rIH_J5F_tLbQtjy2YQ&usqp=CAU",
+          preview: true,
+        },
+        {
+          spotId: 9,
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7HQDdFoEs6SLXInR5U3sYNa8KGiL3jSfRzQ&usqp=CAU",
+          preview: true,
+        },
+        {
+          spotId: 9,
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6NOjbCximV4RGPZ5h8BSPjiJrWjXpC4J7QA&usqp=CAU",
+          preview: true,
+        },
+        {
+          spotId: 9,
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfzncDtquVJteJ4O6jPAE2Cs9ACFdJadJFiQ&usqp=CAU",
+          preview: true,
+        },
+
+        {
+          spotId: 10,
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0fI7z0qQQZdSQyBnysoLguSB_nf9yGTXlQA&usqp=CAU",
+          preview: true,
+        },
+        {
+          spotId: 10,
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPnQI9ake1XUZBlRv_rIH_J5F_tLbQtjy2YQ&usqp=CAU",
+          preview: true,
+        },
+        {
+          spotId: 10,
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7HQDdFoEs6SLXInR5U3sYNa8KGiL3jSfRzQ&usqp=CAU",
+          preview: true,
+        },
+        {
+          spotId: 10,
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6NOjbCximV4RGPZ5h8BSPjiJrWjXpC4J7QA&usqp=CAU",
+          preview: true,
+        },
+        {
+          spotId: 10,
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfzncDtquVJteJ4O6jPAE2Cs9ACFdJadJFiQ&usqp=CAU",
+          preview: true,
+        },
+
+        {
+          spotId: 11,
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWveJAH7B48Bgt0Kx0uFkga8izCcCSNBAZYQ&usqp=CAU",
+          preview: true,
+        },
+        {
+          spotId: 11,
+          url: "https://media.istockphoto.com/id/160641325/photo/white-penthouse-interior.jpg?s=612x612&w=0&k=20&c=zCYlk1WJZ9J2YAMwY-IUfObTa6MNJy-YgCDBCcEL8No=",
+          preview: true,
+        },
+        {
+          spotId: 11,
+          url: "https://media.istockphoto.com/id/1276567523/photo/wonderful-open-floorplan-in-new-luxury-home-with-black-trim-windows.jpg?s=612x612&w=0&k=20&c=d470_B3BnMBD-7IyceOzwVFAWmXcD0DgSbeT5jeJBpU=",
+          preview: true,
+        },
+        {
+          spotId: 11,
+          url: "https://thumbs.dreamstime.com/b/house-interior-25580048.jpg",
+          preview: true,
+        },
+        {
+          spotId: 11,
+          url: "https://images.pexels.com/photos/3797991/pexels-photo-3797991.jpeg?cs=srgb&dl=pexels-houzlook-com-3797991.jpg&fm=jpg",
+          preview: true,
+        },
+
+        {
+          spotId: 12,
+          url: "https://www.vmcdn.ca/f/files/via/images/buildings/rew/1638marpole01(10).jpeg",
+          preview: true,
+        },
+        {
+          spotId: 12,
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPnQI9ake1XUZBlRv_rIH_J5F_tLbQtjy2YQ&usqp=CAU",
+          preview: true,
+        },
+        {
+          spotId: 12,
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzzI9kteu43EWw2nE11c1b1syhFjA3Mpag6g&usqp=CAU",
+          preview: true,
+        },
+        {
+          spotId: 12,
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6CoZYadlsGxGEIS2QWPjEEYenIVbsnN3pGw&usqp=CAU",
+          preview: true,
+        },
+        {
+          spotId: 12,
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiC7aHTq9eghiByQgIRoR8BV8rhlyY5MQI1Q&usqp=CAU",
+          preview: true,
+        }
       ],
       {}
     );
