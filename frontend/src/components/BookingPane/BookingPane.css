@@ -32,3 +32,64 @@
     cursor: pointer;
     background-color: rgb(102, 132, 132);
 }
+
+@media (max-width: 1800px) {
+    .buttCont{
+        display: flex;
+        justify-content: flex-start;
+    }
+    .deleteBooking{
+        width: 80%;
+        border-radius: 10px;
+        height: 30px;
+        background-color: #ff5a5f;
+    }
+}
+@media (max-width: 1650px) {
+    .buttCont{
+        display: flex;
+        justify-content: flex-start;
+    }
+    .deleteBooking{
+        width: 82%;
+        border-radius: 10px;
+        height: 30px;
+        background-color: #ff5a5f;
+    }
+}
+
+@media (max-width: 1550px) {
+    .buttCont{
+        display: flex;
+        justify-content: flex-start;
+    }
+    .deleteBooking{
+        width: 88%;
+        border-radius: 10px;
+        height: 30px;
+        background-color: #ff5a5f;
+    }
+}
+
+@media (max-width: 1400px) {
+    .buttCont{
+        display: flex;
+        justify-content: flex-start;
+    }
+    .deleteBooking{
+        width: 66%;
+        border-radius: 10px;
+        height: 30px;
+        background-color: #ff5a5f;
+    }
+    .dates{
+        display: flex;
+        justify-content: start;
+        gap: 150px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding-top: 20px;
+
+    }
+}

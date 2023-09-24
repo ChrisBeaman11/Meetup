@@ -17,3 +17,23 @@
         margin-bottom: 120px;
 
 }
+
+@media (max-width: 1800px) {
+    .resultsBooking {
+        grid-template-columns: repeat(3, 1fr); /* Change to 3 columns */
+        margin: 5em 4em; /* Adjust the margin as needed */
+    }
+}
+@media (max-width: 1800px) {
+    .resultsBooking {
+        grid-template-columns: repeat(3, 1fr); /* Change to 3 columns */
+        margin: 5em 4em; /* Adjust the margin as needed */
+    }
+}
+
+@media (max-width: 1400px) {
+    .resultsBooking {
+        grid-template-columns: repeat(2, 1fr); /* Change to 3 columns */
+        margin: 5em 4em; /* Adjust the margin as needed */
+    }
+}
