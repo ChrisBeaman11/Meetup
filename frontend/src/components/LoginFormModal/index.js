@@ -57,7 +57,7 @@ function LoginFormModal() {
         )}
         <button className="loginButton" disabled={credential.length<4 || password.length<6}type="submit">Log In</button>
         <button onClick={demoSignIn} className="demoUserButton">Continue as demo user</button>
-        <button className="switchToSignup" onClick={closeModal}>New User? Sign up</button>
+       
       </form>
       </div>
     </>

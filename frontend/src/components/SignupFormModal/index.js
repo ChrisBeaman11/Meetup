@@ -115,7 +115,7 @@ function SignupFormModal() {
           >
             Sign Up
           </button>
-          <button className ="switchToLogin" onClick={() => {closeModal()}}>Already have an account? Log In</button>
+         
         </form>
       </div>
     </>

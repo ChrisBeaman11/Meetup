@@ -57,7 +57,7 @@
   margin-top: 5px;
 }
 
-.switchToLogin{
+/* .switchToLogin{
   width: 400px;
   border-radius: 20px;
   height: 40px;
@@ -65,4 +65,4 @@
 .switchToLogin:hover{
   cursor: pointer;
   background-color: rgb(85, 72, 111);
-}
+} */
